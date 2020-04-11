@@ -2,15 +2,13 @@ import React from "react"
 import "./Login.css";
 import LoginForm from  "../Forms/LoginForm";
 
-import { Grid,  Segment } from "semantic-ui-react";
-
 class Login extends React.Component{
     constructor(){
         super();
         this.state = {
             form: {
-                uname: null,
-                pword: null,
+                uname: "",
+                pword: "",
                 rmbrFlag: false,
             }
         };
@@ -22,7 +20,7 @@ class Login extends React.Component{
       (type === "checkbox") ? this.setState({
             form: { 
                 ...this.state.form,
-                [name]:!value
+                [name]: event.target.checked
             }
         }) : this.setState({
             form: {
@@ -35,13 +33,13 @@ class Login extends React.Component{
 
     render(){
         return(
-            <Grid centered>
-                <Grid.Column>
-                <Segment raised>
-                    <LoginForm form = {this.state.form} changeCallBack={this.handleFormChange}/>
-                </Segment>
-                </Grid.Column>
-            </Grid>
+            <div className="ui grid centered" >
+                <div className="ui column">
+                    <div className="ui segment raised">
+                        <LoginForm form = {this.state.form} changeCallBack={this.handleFormChange}/>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

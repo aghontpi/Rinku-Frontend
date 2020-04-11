@@ -1,41 +1,51 @@
 import React from "react";
-import { Form, Button, Grid } from "semantic-ui-react";
 
 const LoginForm =  (params)  => {
    return ( 
-   <Form>
-        <Form.Field>
+   <form className="ui form">
+        <div className="field">
             <label className="ui left aligned "> Email</label>
-            <Form.Input 
+           <div className="ui input">
+                <input type="text"
                 placeholder="Enter your email" 
                 name="uname" 
                 onChange={params.changeCallBack} 
                 value={params.form.uname}
-    
-            />
-        </Form.Field>
-        <Form.Field >
+                />    
+            </div>
+        </div>
+        <div className="field">
             <label className=""> Password</label>
-            <Form.Input 
+            <div className="ui input">
+                <input type="password"
                 placeholder="Enter password" 
-                type="password" 
                 name="pword"
                 onChange={params.changeCallBack} 
-                value={params.form.pword}/>
-        </Form.Field>
-        <Form.Field>
-            <Form.Checkbox 
-                name="rmbrFlag" 
-                checked={params.form.rmbrFlag} 
-                onChange={params.changeCallBack} 
-                label='Remember me'/>
-        </Form.Field>
-        <Form.Field>
-            <Grid padded centered>
-                <Button type="submit" primary> Login </Button>
-            </Grid>
-        </Form.Field>
-    </Form>
+                value={params.form.pword}
+                />
+            </div>
+        </div>
+        <div className="field">
+            <div className="ui checkbox">
+                <input 
+                    type="checkbox"
+                    onChange={params.changeCallBack}
+                    name="rmbrFlag"
+                    checked={params.form.rmbrFlag}
+                  />
+                <label>Remember me</label>
+            </div>
+        </div>
+        <div className="field">
+            <div className="ui grid padded centered">
+                <button 
+                    type="submit" 
+                    className="ui button primary">
+                        Login 
+                </button>
+            </div>
+        </div>
+    </form>
    );
 }
 
