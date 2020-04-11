@@ -6,14 +6,29 @@ const LoginForm =  (params)  => {
    <Form>
         <Form.Field>
             <label className="ui left aligned "> Email</label>
-            <Form.Input placeholder="Enter your email" name="uname"/>
+            <Form.Input 
+                placeholder="Enter your email" 
+                name="uname" 
+                onChange={params.changeCallBack} 
+                value={params.form.uname}
+    
+            />
         </Form.Field>
         <Form.Field >
             <label className=""> Password</label>
-            <Form.Input placeholder="Enter password" type="password" name="pword"/>
+            <Form.Input 
+                placeholder="Enter password" 
+                type="password" 
+                name="pword"
+                onChange={params.changeCallBack} 
+                value={params.form.pword}/>
         </Form.Field>
         <Form.Field>
-            <Form.Checkbox label='Remember me'/>
+            <Form.Checkbox 
+                name="rmbrFlag" 
+                checked={params.form.rmbrFlag} 
+                onChange={params.changeCallBack} 
+                label='Remember me'/>
         </Form.Field>
         <Form.Field>
             <Grid padded centered>
