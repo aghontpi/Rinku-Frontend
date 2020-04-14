@@ -1,6 +1,7 @@
 import React from "react"
 import "./Login.css";
 import LoginForm from  "../Forms/LoginForm";
+import LoginApi from "../../Api/Login"
 
 class Login extends React.Component{
     constructor(){
@@ -29,12 +30,11 @@ class Login extends React.Component{
                 [name]:[value]
             }
       });
-      console.log(this.state.form);
     }
 
     formSubmit = (event)=> {
         event.preventDefault();
-        console.log("called");
+        LoginApi(this.state.form);
     }
 
     render(){
