@@ -2,7 +2,7 @@ import React from "react";
 
 const LoginForm =  (params)  => {
    return ( 
-   <form className="ui form">
+   <form className="ui form" onSubmit={params.formSubmitCallBack}>
         <div className="field">
             <label className="ui left aligned "> Email</label>
            <div className="ui input">

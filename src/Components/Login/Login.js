@@ -32,12 +32,20 @@ class Login extends React.Component{
       console.log(this.state.form);
     }
 
+    formSubmit = (event)=> {
+        event.preventDefault();
+        console.log("called");
+    }
+
     render(){
         return(
             <div className="ui grid centered" >
                 <div className="ui column">
                     <div className="ui segment raised">
-                        <LoginForm form = {this.state.form} changeCallBack={this.handleFormChange}/>
+                        <LoginForm 
+                        form = {this.state.form} 
+                        changeCallBack={this.handleFormChange} 
+                        formSubmitCallBack={this.formSubmit}/>
                     </div>
                 </div>
             </div>
