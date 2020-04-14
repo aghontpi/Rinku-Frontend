@@ -2,6 +2,7 @@ import React from "react"
 import "./Login.css";
 import LoginForm from  "../Forms/LoginForm";
 import LoginApi from "../../Api/Login"
+import LoginErr from "../Error/LoginErr";
 
 class Login extends React.Component{
     constructor(){
@@ -33,6 +34,17 @@ class Login extends React.Component{
       });
     }
 
+    changeErrorState = (ErrMsg) =>{
+        this.setState((prevState)=>{
+            return {
+                form:{
+                    ...prevState.form,
+                    error:ErrMsg
+                }
+            }
+        } );
+    }
+
     formSubmit = (event)=> {
         event.preventDefault();
         const promise = LoginApi(this.state.form);
@@ -44,25 +56,25 @@ class Login extends React.Component{
                 //todo handle status response errors
             }
         }).then((jsonResp)=>{
-            if(jsonResp.type === "error"){
-                const errmsg=jsonResp.errors.errMsg;
-                this.state.setState((prevState)=>{
-                    return {
-                        form:{
-                            ...prevState.form,
-                            error:errmsg
-                        }
-                    }
-                } )
+            if(jsonResp.response === "error"){
+                this.changeErrorState(jsonResp.errors.errMsg);
             }
         });
     }
 
+
     render(){
+
+        
         return(
             <div className="ui grid centered" >
                 <div className="ui column">
                     <div className="ui segment raised">
+                        <ErrorMessage 
+                        msg={this.state.form.error}
+                        closeAction = {()=>{
+                            this.changeErrorState("");
+                        }}/>
                         <LoginForm 
                         form = {this.state.form} 
                         changeCallBack={this.handleFormChange} 
@@ -72,6 +84,20 @@ class Login extends React.Component{
             </div>
         );
     }
+}
+
+
+function ErrorMessage(props){
+    const err = "Sorry can not log you in!"
+    if (props.msg.length > 1){
+        return (
+            <LoginErr 
+                title={err} 
+                msg= {props.msg}
+                closeActionCallback = {props.closeAction}/> 
+        );
+    }
+    return "";
 }
 
 export default Login;

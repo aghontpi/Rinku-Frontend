@@ -1,9 +1,11 @@
 import React from "react";
 
 const LoginForm =  (params)  => {
+    let divClassName = "field";
+    (params.form.error.length > 0) && (divClassName += " error");
    return ( 
    <form className="ui form" onSubmit={params.formSubmitCallBack}>
-        <div className="field">
+        <div className={divClassName}>
             <label className="ui left aligned "> Email</label>
            <div className="ui input">
                 <input type="text"
@@ -14,7 +16,7 @@ const LoginForm =  (params)  => {
                 />    
             </div>
         </div>
-        <div className="field">
+        <div className={divClassName} >
             <label className=""> Password</label>
             <div className="ui input">
                 <input type="password"
