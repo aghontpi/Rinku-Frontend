@@ -11,6 +11,7 @@ class Login extends React.Component{
                 uname: "",
                 pword: "",
                 rmbrFlag: false,
+                error:"",
             }
             
         };
@@ -34,7 +35,27 @@ class Login extends React.Component{
 
     formSubmit = (event)=> {
         event.preventDefault();
-        LoginApi(this.state.form);
+        const promise = LoginApi(this.state.form);
+        promise.then((response)=>{
+            if(response.status === 200){
+                return response.json();
+            }
+            else {
+                //todo handle status response errors
+            }
+        }).then((jsonResp)=>{
+            if(jsonResp.type === "error"){
+                const errmsg=jsonResp.errors.errMsg;
+                this.state.setState((prevState)=>{
+                    return {
+                        form:{
+                            ...prevState.form,
+                            error:errmsg
+                        }
+                    }
+                } )
+            }
+        });
     }
 
     render(){

@@ -4,7 +4,8 @@ const LoginApi = (formInput) => {
     return fetch('http://localhost/demo.php', {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: JSON.stringify(formInput)
+        body: JSON.stringify(formInput),
+        responseType: 'json',
     });
 }
 
