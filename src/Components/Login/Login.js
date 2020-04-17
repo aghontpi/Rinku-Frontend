@@ -67,18 +67,20 @@ class Login extends React.Component{
 
         
         return(
-            <div className="ui grid centered" >
-                <div className="ui column">
-                    <div className="ui segment raised">
-                        <ErrorMessage 
-                        msg={this.state.form.error}
-                        closeAction = {()=>{
-                            this.changeErrorState("");
-                        }}/>
-                        <LoginForm 
-                        form = {this.state.form} 
-                        changeCallBack={this.handleFormChange} 
-                        formSubmitCallBack={this.formSubmit}/>
+            <div className="top-50">
+                <div className="ui grid centered" >
+                    <div className="ui column">
+                        <div className="ui segment raised">
+                            <ErrorMessage 
+                            msg={this.state.form.error}
+                            closeAction = {()=>{
+                                this.changeErrorState("");
+                            }}/>
+                            <LoginForm 
+                            form = {this.state.form} 
+                            changeCallBack={this.handleFormChange} 
+                            formSubmitCallBack={this.formSubmit}/>
+                        </div>
                     </div>
                 </div>
             </div>
