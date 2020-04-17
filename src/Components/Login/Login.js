@@ -45,6 +45,14 @@ class Login extends React.Component{
         } );
     }
 
+    changeLoginState = (resp) => {
+            console.log(resp);
+            if(resp.content !== "undefined"){
+                sessionStorage.setItem("user", resp.content.user);
+                sessionStorage.setItem("loginTime", resp.content.loginTime);
+            }
+    }
+
     formSubmit = (event)=> {
         event.preventDefault();
         const promise = LoginApi(this.state.form);
@@ -58,6 +66,8 @@ class Login extends React.Component{
         }).then((jsonResp)=>{
             if(jsonResp.response === "error"){
                 this.changeErrorState(jsonResp.errors.errMsg);
+            } else if (jsonResp.response == "success"){
+                this.changeLoginState(jsonResp);
             }
         });
     }
