@@ -1,10 +1,14 @@
 
 const LoginApi = (formInput) => {
-    console.log(formInput);
+    const arr  = {
+        "endPoint":"login",
+        "data":formInput
+    }
+
     return fetch('http://localhost/demo.php', {
         method: 'POST',
-        headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: JSON.stringify(formInput),
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(arr),
         responseType: 'json',
     });
 }
