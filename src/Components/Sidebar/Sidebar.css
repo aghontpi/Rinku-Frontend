@@ -1,0 +1,38 @@
+    
+.main-sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 188px;
+    min-height: 100%;
+    background: #afcec3;
+}
+    
+.user-title{
+    font-weight: 400;
+    width: inherit;
+    position: absolute;
+    top:10%;
+    text-align: center;
+}
+
+
+    
+.user-content{
+    font-weight: 400;
+    width: inherit;
+    position: absolute;
+    top:30%;
+}
+
+.user-menuitems{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0;
+}
+
+.user-menuitems li{
+    margin: 2rem 1rem;
+    padding:0px 20px;
+    text-transform: capitalize;
+}

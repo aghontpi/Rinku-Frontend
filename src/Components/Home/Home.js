@@ -1,5 +1,5 @@
 import React from "react";
-
+import Sidebar from "./../Sidebar/Sidebar"
 class Home extends React.Component{
     constructor(){
         super();
@@ -10,7 +10,9 @@ class Home extends React.Component{
 
     render(){
         return (
-            <h4>This is home page</h4>
+            <div>
+                <Sidebar/>
+            </div>
         );
     }
 
