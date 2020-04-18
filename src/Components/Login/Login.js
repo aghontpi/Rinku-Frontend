@@ -3,6 +3,11 @@ import "./Login.css";
 import LoginForm from  "../Forms/LoginForm";
 import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
+import { 
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 
 class Login extends React.Component{
     constructor(){
@@ -112,4 +117,9 @@ function ErrorMessage(props){
     return "";
 }
 
+const checkLoggedIn = () => {
+    const loggedInUser = sessionStorage.getItem("user");
+    return (loggedInUser != null);
+}
+export {checkLoggedIn}
 export default Login;
