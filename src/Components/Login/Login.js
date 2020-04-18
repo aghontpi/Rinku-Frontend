@@ -4,9 +4,8 @@ import LoginForm from  "../Forms/LoginForm";
 import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
 import { 
-    BrowserRouter as Router,
-    Switch,
-    Route
+    Route,
+    Redirect
 } from "react-router-dom";
 
 class Login extends React.Component{
@@ -18,7 +17,8 @@ class Login extends React.Component{
                 pword: "",
                 rmbrFlag: false,
                 error:"",
-            }
+            },
+            loggedIn: false
             
         };
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -55,6 +55,11 @@ class Login extends React.Component{
             if(resp.content !== "undefined"){
                 sessionStorage.setItem("user", resp.content.user);
                 sessionStorage.setItem("loginTime", resp.content.loginTime);
+                this.setState({
+                    form:this.state.form,
+                    loggedIn:true
+                });
+                console.log("state",this.state);
             }
     }
 
@@ -71,34 +76,42 @@ class Login extends React.Component{
         }).then((jsonResp)=>{
             if(jsonResp.response === "error"){
                 this.changeErrorState(jsonResp.errors.errMsg);
-            } else if (jsonResp.response == "success"){
+            } else if (jsonResp.response === "success"){
                 this.changeLoginState(jsonResp);
             }
         });
     }
 
-
-    render(){
-
-        
-        return(
-            <div className="top-50">
-                <div className="ui grid centered" >
-                    <div className="ui column">
-                        <div className="ui segment raised">
-                            <ErrorMessage 
-                            msg={this.state.form.error}
-                            closeAction = {()=>{
-                                this.changeErrorState("");
-                            }}/>
-                            <LoginForm 
-                            form = {this.state.form} 
-                            changeCallBack={this.handleFormChange} 
-                            formSubmitCallBack={this.formSubmit}/>
+    raisedSegmentForm(){
+        /** @todo use hooks and move this outside class */
+        return (
+                <div className="top-50">
+                    <div className="ui grid centered" >
+                        <div className="ui column">
+                            <div className="ui segment raised">
+                                <ErrorMessage 
+                                msg={this.state.form.error}
+                                closeAction = {()=>{
+                                    this.changeErrorState("");
+                                }}/>
+                                <LoginForm 
+                                form = {this.state.form} 
+                                changeCallBack={this.handleFormChange} 
+                                formSubmitCallBack={this.formSubmit}/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            );
+    }
+
+
+    render(){
+        return(
+            <Route path="/">
+            {this.state.loggedIn && <Redirect to="/home" /> }
+            {this.raisedSegmentForm() }
+            </Route>
         );
     }
 }
