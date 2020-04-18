@@ -2,12 +2,11 @@ import React from "react";
 import { 
     BrowserRouter as Router,
     Switch,
-    Route,
-    Redirect
+    Route
 } from "react-router-dom";
-import { checkLoggedIn } from "./../Login/Login";
-import Home from "../Home/Home";
+
 import Login from "../Login/Login";
+import Home from "../Home/Home"
 
 function MyApp(){
     return(
@@ -17,7 +16,7 @@ function MyApp(){
                     <Login/>
                     </Route>
                     <Route exact path="/home">
-                    {checkLoggedIn() ? <Home/> : <Redirect to="/" />} 
+                    <Home/>
                     </Route>
                 </Switch>
             </Router>

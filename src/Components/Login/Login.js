@@ -3,10 +3,6 @@ import "./Login.css";
 import LoginForm from  "../Forms/LoginForm";
 import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
-import { 
-    Route,
-    Redirect
-} from "react-router-dom";
 
 class Login extends React.Component{
     constructor(){
@@ -108,10 +104,9 @@ class Login extends React.Component{
 
     render(){
         return(
-            <Route path="/">
-            {this.state.loggedIn && <Redirect to="/home" /> }
-            {this.raisedSegmentForm() }
-            </Route>
+            <div>
+            { this.raisedSegmentForm() }
+            </div>
         );
     }
 }
