@@ -21,9 +21,15 @@ class PageHolder extends React.Component {
 
     render(){
         return (
-            <div className="page-holder">
-            {this.getPage()}
+    <div className="page-holder">
+        <div className="actual-page">
+            <div className="title-holder">
+                <div className="page-title">
+                </div>
             </div>
+            {this.getPage()}
+        </div>
+    </div>
         )
     }
 
