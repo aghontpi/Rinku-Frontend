@@ -1,5 +1,6 @@
 import React from "react";
 import "./PageHolder.css";
+import FileManager from "./../FileManager/FileManager"
 
 class PageHolder extends React.Component {
     constructor(){
@@ -7,11 +8,21 @@ class PageHolder extends React.Component {
         this.state = {
             page:"filemanager"
         }
+        
     }
+
+    getPage(){
+    if(this.state.page === "filemanager"){
+        return(
+            <FileManager/>
+        );
+    }
+    }
+
     render(){
         return (
             <div className="page-holder">
-            <h3>"this is the main content";</h3>
+            {this.getPage()}
             </div>
         )
     }
