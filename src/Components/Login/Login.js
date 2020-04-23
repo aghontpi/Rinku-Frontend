@@ -3,6 +3,7 @@ import "./Login.css";
 import LoginForm from  "../Forms/LoginForm";
 import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
+import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component{
     constructor(){
@@ -67,7 +68,7 @@ class Login extends React.Component{
                 return response.json();
             }
             else {
-                //todo handle status response errors
+                //@todo: handle status response errors
             }
         }).then((jsonResp)=>{
             if(jsonResp.response === "error"){
@@ -103,6 +104,11 @@ class Login extends React.Component{
 
 
     render(){
+        if (this.state.loggedIn)
+            return (
+            <Redirect to='/home'/>
+        );
+
         return(
             <div>
             { this.raisedSegmentForm() }
