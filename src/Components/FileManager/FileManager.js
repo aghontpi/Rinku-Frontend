@@ -6,7 +6,13 @@ class FileManager extends React.Component{
     constructor(){
         super();
         this.state = {
-
+            files:[
+                {
+                    key:'idm.zip',
+                    size: 1024,
+                    modified: +"today"
+                }   
+            ]
         }
     }
 
@@ -17,7 +23,7 @@ class FileManager extends React.Component{
     render(){
         return (
             <div>
-                <FileBrowser files={[]}/>
+                <FileBrowser files={this.state.files}/>
             </div>
         );
     }
