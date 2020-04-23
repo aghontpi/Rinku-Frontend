@@ -132,7 +132,7 @@ function ErrorMessage(props){
 }
 
 const checkLoggedIn = () => {
-    const loggedInUser = sessionStorage.getItem("user");
+    let loggedInUser = sessionStorage.getItem("user");
     return (loggedInUser != null);
 }
 export {checkLoggedIn}

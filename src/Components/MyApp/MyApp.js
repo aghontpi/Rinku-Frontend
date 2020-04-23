@@ -7,14 +7,15 @@ import {
 
 import Login from "../Login/Login";
 import Home from "../Home/Home"
+import {LoginRouter} from "../Routes/LoginRouter";
 
 function MyApp(){
     return(
         <div><Router>
                 <Switch>
-                    <Route exact path="/">
+                    <LoginRouter exact path="/">
                     <Login/>
-                    </Route>
+                    </LoginRouter>
                     <Route exact path="/home">
                     <Home/>
                     </Route>
