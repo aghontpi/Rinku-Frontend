@@ -6,8 +6,9 @@ import {
 } from "react-router-dom";
 
 import Login from "../Login/Login";
-import Home from "../Home/Home"
 import {LoginRouter} from "../Routes/LoginRouter";
+import HomeRouter from "../Routes/HomeRouter";
+import Home from "../Home/Home";
 
 function MyApp(){
     return(
@@ -16,9 +17,9 @@ function MyApp(){
                     <LoginRouter exact path="/">
                     <Login/>
                     </LoginRouter>
-                    <Route exact path="/home">
-                    <Home/>
-                    </Route>
+                    <HomeRouter exact path="/home">
+                        <Home/>
+                    </HomeRouter>
                 </Switch>
             </Router>
         </div>
