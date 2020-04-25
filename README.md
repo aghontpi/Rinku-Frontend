@@ -12,6 +12,21 @@
 * Docker
 
 
+## File structure
+
+* server
+    * contains server 
+
+* src 
+    * contains client 
+
+* Docker
+    * contains php(server configurations), mysql, adminer.
+
+* mysql setup files
+    * Docker/mysql/dbinit/
+
+
 ### How Do I setup the server?
 
 Navigate to folder "Docker" use the command
@@ -21,6 +36,10 @@ Navigate to folder "Docker" use the command
 docker-compose up
 
 ```
+note: 
+
+mysql lib files are mounted under "Docker/.mysql" to maintain persistence.
+ignore it in watchers.
 
 For more, use README inside "Docker/" folder.
 
@@ -31,3 +50,13 @@ For more, use README inside "Docker/" folder.
 npm run build
 
 ```
+
+
+### password mechanism
+
+encryption used for storing passwords is bcrypt
+
+#### default credentials provided with docker setup.
+
+username: testuser
+passowrd: 123456
