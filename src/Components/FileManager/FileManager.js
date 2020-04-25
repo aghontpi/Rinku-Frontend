@@ -7,20 +7,36 @@ class FileManager extends React.Component{
     constructor(){
         super();
         this.state = {
-            pwd:"*",
+            fileManager:{
+                dir:"*",
+                operation:"list",
+            },
             files:[
-                {
-                    key:'idm.zip',
-                    size: 1024,
-                    modified: +"today"
-                }   
             ]
         }
     }
 
+    initalList = (files) => {
+        this.setState((prevState)=>{
+            return {
+                fileManager:prevState.fileManager,
+                files:files
+            }
+        });
+        console.log(this.state);
+    }
+
     componentDidMount(){
-        /**@todo make api call to list files to display */
-        let resp = FileList(this.state.pwd);
+        let promise = FileList(this.state.fileManager);
+        promise.then((response) => {
+            // @todo: handle error responses
+            return (response.status === 200) ? response.json() : {};
+        }).then((json)=>{
+            // @todo: implement negative response
+            if(json.response === "success"){
+                this.initalList(JSON.parse(json.content));
+            }
+        });
     }
 
     render(){

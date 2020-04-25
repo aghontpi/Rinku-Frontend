@@ -1,7 +1,7 @@
 
 const FileList = (params) => {
     const req = {
-        endPoint:"fileOpeation",
+        endPoint:"fileOperation",
         data:params
     }
 
