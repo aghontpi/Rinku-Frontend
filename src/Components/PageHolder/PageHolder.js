@@ -1,6 +1,7 @@
 import React from "react";
 import "./PageHolder.css";
-import FileManager from "./../FileManager/FileManager"
+import FileManager from "./../FileManager/FileManager";
+import PageHeader from "./../PageHeader/PageHeader";
 
 class PageHolder extends React.Component {
     constructor(){
@@ -21,15 +22,16 @@ class PageHolder extends React.Component {
 
     render(){
         return (
-    <div className="page-holder">
-        <div className="actual-page">
-            <div className="title-holder">
-                <div className="page-title">
-                </div>
+        <div className="page-holder">
+            <PageHeader />
+                <div className="actual-page">
+                    <div className="title-holder">
+                        <div className="page-title">
+                        </div>
+                    </div>
+                    {this.getPage()}
             </div>
-            {this.getPage()}
         </div>
-    </div>
         )
     }
 

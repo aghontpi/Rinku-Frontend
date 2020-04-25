@@ -29,6 +29,7 @@ const authentication =  {
         callback();
     },
     signOut(callback){
+        sessionStorage.clear();
         callback();
     }
 }
