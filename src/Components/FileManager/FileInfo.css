@@ -1,0 +1,8 @@
+.center-txt{
+    text-align: center;
+}
+
+.content span{
+    display: inline-block;
+    margin:8px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import FileBrowser from 'react-keyed-file-browser'
 import './../../../node_modules/react-keyed-file-browser/dist/react-keyed-file-browser.css';
 import { FileList } from "./../../Api/FileExplorerOperations"
+import { FileInfo } from "./FileInfo";
 
 class FileManager extends React.Component{
     constructor(){
@@ -12,7 +13,8 @@ class FileManager extends React.Component{
                 operation:"list",
             },
             files:[
-            ]
+            ],
+            popup:false
         }
     }
 
@@ -39,10 +41,21 @@ class FileManager extends React.Component{
         });
     }
 
+    fileClickHandler = (props) => {
+        this.setState((prevState)=>{
+            return {
+                ...prevState,
+            popup: props
+            }
+        });
+        window.$('.ui.modal').modal('show');
+    }
+
     render(){
         return (
             <div>
-                <FileBrowser files={this.state.files}/>
+                <FileBrowser files={this.state.files} onSelectFile={this.fileClickHandler} />
+                <FileInfo property={this.state.popup}/>
             </div>
         );
     }
