@@ -52,6 +52,7 @@ class Login extends React.Component{
             if(resp.content !== "undefined"){
                 sessionStorage.setItem("user", resp.content.user);
                 sessionStorage.setItem("loginTime", resp.content.loginTime);
+                sessionStorage.setItem("nick",resp.content.nick);
                 this.setState({
                     form:this.state.form,
                     loggedIn:true
