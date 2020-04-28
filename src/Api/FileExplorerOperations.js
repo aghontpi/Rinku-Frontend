@@ -1,3 +1,4 @@
+import { Fetch as FetchApi} from "./Fetch";
 
 const FileList = (params) => {
     const req = {
@@ -5,13 +6,7 @@ const FileList = (params) => {
         data:params
     }
 
-    return fetch('http://localhost/index.php', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        credentials: 'include',
-        body: JSON.stringify(req),
-        responseType: 'json',
-    });
+    return FetchApi(req);
 }
 
 export { FileList }

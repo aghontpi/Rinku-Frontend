@@ -1,3 +1,4 @@
+import { Fetch as FetchApi} from "./Fetch";
 
 const LoginApi = (formInput) => {
     const arr  = {
@@ -5,13 +6,7 @@ const LoginApi = (formInput) => {
         "data":formInput
     }
 
-    return fetch('http://localhost/index.php', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        credentials: 'include',
-        body: JSON.stringify(arr),
-        responseType: 'json',
-    });
+    return FetchApi(arr);
 }
 
 
