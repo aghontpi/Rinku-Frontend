@@ -1,6 +1,6 @@
 
 const Fetch = (params) => {
-    return fetch('http://localhost/demo.php', {
+    return fetch('http://localhost/index.php', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         credentials: 'include',
