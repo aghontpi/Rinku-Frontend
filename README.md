@@ -43,6 +43,8 @@ ignore it in watchers.
 
 For more, use README inside "Docker/" folder.
 
+use cors anywhere if the cors setup on the server is not working for you.
+
 ### How Do I setup the client? 
 
 ```bash
