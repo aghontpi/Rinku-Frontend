@@ -5,15 +5,20 @@ import { withRouter } from "react-router";
 // nested router.
 
 import style from "./download.module.css";
+import { Download } from "../../Api/Download";
 class DownloadPage extends React.Component{
     constructor(){
         super()
         this.state = {
-            fileid:""
+            filename:"",
+            fileid:"",
+            fileSize:"",
+            error:"",
         }
     }
 
     componentDidMount(){
+        // get the file id form react-router
         const { fileid } = this.props.match.params;
         this.setState((prevState) => {
             return({
@@ -23,7 +28,29 @@ class DownloadPage extends React.Component{
             )
             
         }, ()=>console.log(this.state));
-        
+
+        let promise = Download({params:fileid});
+        promise.then((response) => {
+            return (response.status === 200) ? response.json() : {};
+        }).then((json)=>{
+            if(json.response === "success"){
+                this.setState((prevState) => {
+                    return({
+                        ...prevState,
+                        filename:json.response.content.filename,
+                        fileSize:json.response.content.fileSize
+                    })
+                });
+            } else if(json.response === "error"){
+                this.setState((prevState) => {
+                    return({
+                        ...prevState,
+                        error:json.response.errMsg
+                    })
+                });
+            }
+        });
+
     }
 
     render(){
@@ -34,8 +61,8 @@ class DownloadPage extends React.Component{
                 </div>
                 <div className={style.file_details}>
                     <div>
-                        <span>filename.ext</span>
-                        <span>4844KB</span>
+                        <span>{this.state.filename}</span>
+                        <span>{this.state.fileSize}</span>
                     </div>
                 </div>
                 <div className={style.download_button}>
