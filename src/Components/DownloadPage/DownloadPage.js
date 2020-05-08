@@ -6,13 +6,14 @@ import { withRouter } from "react-router";
 
 import style from "./download.module.css";
 import { Download } from "../../Api/Download";
+import folder from "./folder.webp" ;
 class DownloadPage extends React.Component{
     constructor(){
         super()
         this.state = {
-            filename:"",
+            filename:"filename",
             fileid:"",
-            fileSize:"",
+            fileSize:"filesize",
             error:"",
         }
     }
@@ -57,7 +58,7 @@ class DownloadPage extends React.Component{
         return(
             <div className={style.page_container}>
                 <div className={style.download_image}>
-
+                    <img src={folder} alt="downloadIcon"/>
                 </div>
                 <div className={style.file_details}>
                     <div>

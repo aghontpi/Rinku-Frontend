@@ -11,8 +11,12 @@
     width: 80px;
     height: 80px;
     margin:16px auto;
-    background-image: url('Icon-512.png');
     background: cover no-repeat;
+}
+
+.download_image img{
+    width: inherit;
+    height: inherit;
 }
 
 .file_details{
