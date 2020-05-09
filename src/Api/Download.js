@@ -3,7 +3,7 @@ import { Fetch as FetchApi} from "./Fetch";
 const Download = (params) => {
     const req = {
         endPoint:"download",
-        fileid:params.fileid
+        data:params
     }
 
     return FetchApi(req);

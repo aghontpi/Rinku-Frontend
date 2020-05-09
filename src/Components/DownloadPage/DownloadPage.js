@@ -7,6 +7,7 @@ import { withRouter } from "react-router";
 import style from "./download.module.css";
 import { Download } from "../../Api/Download";
 import folder from "./folder.webp" ;
+import { bytesToReadable } from "./../Utils";
 class DownloadPage extends React.Component{
     constructor(){
         super()
@@ -30,7 +31,7 @@ class DownloadPage extends React.Component{
             
         }, ()=>console.log(this.state));
 
-        let promise = Download({params:fileid});
+        let promise = Download({fileid:fileid});
         promise.then((response) => {
             return (response.status === 200) ? response.json() : {};
         }).then((json)=>{
@@ -38,8 +39,8 @@ class DownloadPage extends React.Component{
                 this.setState((prevState) => {
                     return({
                         ...prevState,
-                        filename:json.response.content.filename,
-                        fileSize:json.response.content.fileSize
+                        filename:json.content.file.filename,
+                        fileSize: bytesToReadable(json.content.file.filesize),
                     })
                 });
             } else if(json.response === "error"){
