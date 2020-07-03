@@ -55,8 +55,8 @@ class DownloadPage extends React.Component{
 
     }
 
-    render(){
-        return(
+    donwloadContent(){
+        return (
             <div className={style.page_container}>
                 <div className={style.download_image}>
                     <img src={folder} alt="downloadIcon"/>
@@ -74,6 +74,39 @@ class DownloadPage extends React.Component{
                 </div>
             </div>
         );
+    }
+
+    errorContent(){
+        const disabledButton = {
+            borderColor:"grey",
+            cursor:"Default",
+            opacity:0.5
+        }
+
+        const disabledSpan = {
+            color:"grey"
+        }
+        
+        return (
+            <div className={style.page_container}>
+                <div className={style.file_details}>
+                    <div>
+                        <span style={{color:"red"}}>Invalid Download Link</span>
+                        <span></span>
+                    </div>
+                </div>
+                <div className={style.download_button} style={disabledButton} >
+                    <div>
+                        <span style={disabledSpan}>DOWNLOAD</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    render(){
+        let content = this.errorContent();
+        return( content );
     }
 
 }
