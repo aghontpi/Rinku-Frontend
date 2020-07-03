@@ -55,6 +55,26 @@ class DownloadPage extends React.Component{
 
     }
 
+    downloadClick = () => {
+        if (this.state.fileid === "") return;
+        let promise =  Download({fileid:this.state.fileid,action:'download'})
+        promise.then((response) => {
+            return (response.status === 200) ? response.json() : {};
+        }).then((json) => {
+            if(json.response === "success"){
+                window.location.href = json.content.file.downloadUrl;    
+            }
+            else if(json.response === "error"){
+                this.setState((prevState) => {
+                    return({
+                        ...prevState,
+                        error:json.errors.errMsg
+                    })
+                });
+            }
+        });
+    }
+
     donwloadContent(){
         return (
             <div className={style.page_container}>
@@ -67,7 +87,7 @@ class DownloadPage extends React.Component{
                         <span>{this.state.fileSize}</span>
                     </div>
                 </div>
-                <div className={style.download_button}>
+                <div onClick={this.downloadClick} className={style.download_button}>
                     <div>
                         <span>DOWNLOAD</span>
                     </div>
