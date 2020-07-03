@@ -47,7 +47,7 @@ class DownloadPage extends React.Component{
                 this.setState((prevState) => {
                     return({
                         ...prevState,
-                        error:json.response.errMsg
+                        error:json.errors.errMsg
                     })
                 });
             }
@@ -86,13 +86,14 @@ class DownloadPage extends React.Component{
         const disabledSpan = {
             color:"grey"
         }
-        
+
         return (
             <div className={style.page_container}>
                 <div className={style.file_details}>
                     <div>
-                        <span style={{color:"red"}}>Invalid Download Link</span>
-                        <span></span>
+                        <span style={{color:"red"}}>
+                            {this.state.error}
+                        </span>
                     </div>
                 </div>
                 <div className={style.download_button} style={disabledButton} >
@@ -105,7 +106,13 @@ class DownloadPage extends React.Component{
     }
 
     render(){
-        let content = this.errorContent();
+        let content = null;
+        if(this.state.error !== ""){
+            content = this.errorContent();
+        } else if(this.state.filename !== "filename"){
+            content = this.donwloadContent();
+        }
+
         return( content );
     }
 
