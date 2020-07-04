@@ -47,8 +47,7 @@ class FileManager extends React.Component{
                 ...prevState,
             popup: props
             }
-        });
-        window.$('.ui.modal').modal('show');
+        },()=>window.$('.ui.modal').modal('show'));
     }
 
     render(){
