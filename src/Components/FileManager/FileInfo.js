@@ -57,8 +57,7 @@ function FileInfo(props){
                 <br></br>
             <span>
                 <div className={" ui approve button " + 
-                    ((downloadId !== loadingMsg && downloadId !== def_msg)
-                         ? " disabled ": "" ) } 
+                    ((downloadId !== def_msg) ? " disabled ": "" ) } 
                     onClick={
                         ()=>requestDL(
                             file,
