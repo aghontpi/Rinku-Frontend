@@ -55,7 +55,8 @@ class FileManager extends React.Component{
         return (
             <div>
                 <FileBrowser files={this.state.files} onSelectFile={this.fileClickHandler} />
-                <FileInfo property={this.state.popup}/>
+                {this.state.popup ? <FileInfo property={ this.state.popup }/>
+                : ""}
             </div>
         );
     }
