@@ -28,9 +28,13 @@ const SnackBar = ({params}) => {
     const msg = params.msg && params.msg.trim() !== "" 
         ? params.msg : "please provide message here!" 
 
+    const type = params.type && params.type.trim() !== "" 
+    ? params.type : "success" 
+
+
     const content =  (show && params.key) ? (
         <div className={classnames} >
-            <div className={"ui floating compact success message "}>
+            <div className={"ui floating compact "+ type +" message "}>
                 <p>{msg}</p>
             </div>
         </div>
