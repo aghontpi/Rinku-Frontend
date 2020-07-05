@@ -19,7 +19,7 @@ function MyApp(){
                     <LoginRouter exact path="/">
                     <Login/>
                     </LoginRouter>
-                    <HomeRouter exact path="/home">
+                    <HomeRouter exact path="/:module">
                         <Home/>
                     </HomeRouter>
                     <Route path='/download/:fileid'>
