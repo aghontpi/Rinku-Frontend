@@ -36,3 +36,25 @@
     padding:0px 20px;
     text-transform: capitalize;
 }
+
+.user-menuitems li a{
+    outline: none;
+}
+
+/*
+
+disable underline effect
+
+li:after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px rgb(227, 227, 120);
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+
+li.fromRight:after{ transform-origin:100% 50%; }
+li:hover:after { transform: scaleX(1); }
+li.leftanimation:after{  transform-origin:  0% 50%; }
+
+*/

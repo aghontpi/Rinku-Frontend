@@ -1,7 +1,7 @@
 import React from "react";
 import {
     BrowserRouter as Router,
-    Link
+    NavLink
 } from "react-router-dom";
 import "./Sidebar.css";
 import FileManager from "./../FileManager/FileManager";
@@ -15,22 +15,26 @@ function Sidebar(props){
         {
             path:"/home",
             exact:true,
-            children: () =>  <FileManager/> 
+            children: () =>  <FileManager/> ,
+            name:"explorer"
         },
         {
             path:"/manage-links",
             exact:true,
-            children: () =>  <ManageLinks/> 
+            children: () =>  <ManageLinks/> ,
+            name:"manage links"
         },
         {
             path:"/url-shorten",
             exact:true,
-            children: () =>  <div>url shorten</div> 
+            children: () =>  <div>url shorten</div> ,
+            name:"url shorten"
         },
         {
             path:"/stats",
             exact:true,
-            children: () =>  <div>url shorten</div> 
+            children: () =>  <div>url shorten</div> ,
+            name:"stats"
         },
     ];
 
@@ -45,15 +49,33 @@ function Sidebar(props){
                 </div>
                 <div className="user-content">
                     <ul className="user-menuitems">
-                        <li> <Link to="/home">explorer</Link></li>
-                        <li> <Link to="/manage-links">manage links</Link></li>
-                        <li> <Link to="/url-shorten">url shortener</Link></li>
-                        <li> <Link to="/stats">stats</Link></li>
+                        {navItems(routes)}
                     </ul>
                 </div>
             </div>
             { routes && <PageHolder routes={routes}/> }
         </Router>
+    );
+}
+
+const navItems = (items) => {
+    const linkActiveStyle = {
+        borderBottom: "solid 3px orange",
+        transition: "0.5s ease-in-out"
+      }
+    return(
+        items.map((item,key)=>{
+            return(
+                <li key={key} className="leftanimation"> 
+                    <NavLink 
+                        to={item.path}
+                        activeStyle={ linkActiveStyle }
+                    >
+                        {item.name}
+                    </NavLink>
+                </li>
+            )
+        })
     );
 }
 
