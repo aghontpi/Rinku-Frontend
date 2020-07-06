@@ -7,6 +7,7 @@ import "./Sidebar.css";
 import FileManager from "./../FileManager/FileManager";
 import ManageLinks from "./../ManageLinks/ManageLinks";
 import PageHolder from "./../PageHolder/PageHolder";
+import {Stats} from "../Stats"
 
 function Sidebar(props){
 
@@ -33,7 +34,7 @@ function Sidebar(props){
         {
             path:"/stats",
             exact:true,
-            children: () =>  <div>url shorten</div> ,
+            children: () =>  <Stats/>,
             name:"stats"
         },
     ];
@@ -66,7 +67,7 @@ const navItems = (items) => {
     return(
         items.map((item,key)=>{
             return(
-                <li key={key} className="leftanimation"> 
+                <li key={key}> 
                     <NavLink 
                         to={item.path}
                         activeStyle={ linkActiveStyle }
