@@ -1,3 +1,5 @@
+import {useEffect,useRef} from "react";
+
 const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
 function niceBytes(x){
@@ -12,4 +14,15 @@ function niceBytes(x){
   return(n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l]);
 }
 
-export { niceBytes as bytesToReadable }
+// currently react does not support previous props, in upcomming versions it will
+// https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+// workaroud with useRef
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
+export { niceBytes as bytesToReadable, usePrevious }
