@@ -33,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "@nivo/bar": "^0.62.0",
     "react-router-dom": "^5.1.2"
   }
 }
