@@ -1,33 +1,66 @@
 # Personal Cloud
 
-> Manipulate file system on sever, analytics for downloaded files, create donwload link for server files,
+> Create/manage download links for filesystem, shrink-url, analytics for downloaded files.
+
+## Features
+
+- Create download link for any files
+- Manage all the download links
+- Download page for files is seperate
+- Get analytics of the download statistics
+- Includes url-shortener
 
 ## Built with
 
-* React
-* React router
-* semnatic ui
-* php
-    * custom framework which is very basic
-* Docker
+- React
+- React router
+- semnatic ui
+- php
+    - custom framework which is very basic
+- Docker
+- nivo
+
+## Folder structure
+
+- server
+    - contains server (php files)
+- src 
+    - contains client (javascript files)
+- Docker
+    - docker-compose which utilizes 3 docker containers
+        - php
+        - mysql
+        - adminer
+- mysql setup files
+    - Docker/mysql/dbinit/
 
 
-## File structure
+## Documentation
 
-* server
-    * contains server 
+Set the path, make sure the path mentioned has appropriate permission.
 
-* src 
-    * contains client 
+```php
 
-* Docker
-    * contains php(server configurations), mysql, adminer.
+server/interfaces/config.php
+   
+    /* tells application the root path to operate on */
+    const path = ".";
 
-* mysql setup files
-    * Docker/mysql/dbinit/
+```
 
+create mysql database, import the following file
 
-### How Do I setup the server?
+```bash
+
+Docker/mysql/dbinit/tables.sql
+
+```
+
+### How to run with docker
+
+#### Server
+
+You must have Docker with docker-compose installed.
 
 Navigate to folder "Docker" use the command
 
@@ -45,18 +78,21 @@ For more, use README inside "Docker/" folder.
 
 use cors anywhere if the cors setup on the server is not working for you.
 
-### How Do I setup the client? 
+#### Client (does not depend upon docker)
+
+```bash
+
+npm start
+
+```
+
+to get the production build
 
 ```bash
 
 npm run build
 
 ```
-
-
-### password mechanism
-
-encryption used for storing passwords is bcrypt
 
 #### default credentials provided with docker setup.
 
