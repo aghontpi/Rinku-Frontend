@@ -54,7 +54,7 @@ function ManageLinks(props){
     return (
         <div className="linksholder">
             <div>Links Available</div>
-            { contents.content !== null && list(contents,setContents) }
+            { contents.content !== null && list(contents,setContents,{setSnack,setSnackProp}) }
             {snack && <SnackBar params={
                 {show:true,
                 key:1,
@@ -66,7 +66,7 @@ function ManageLinks(props){
     );
 }
 
-function list({items, content},setContents){
+function list({items, content},setContents,{setSnack,setSnackProp}){
 
     const modifyItems = (value)=> {
         value && setContents((prevstate)=>{
@@ -85,7 +85,7 @@ function list({items, content},setContents){
     const prevBtnClick = () => {
         modifyItems(-10)
     }
-
+    console.log(content);
     return(
         <table className="ui stripped table">
             {
@@ -93,11 +93,25 @@ function list({items, content},setContents){
             }
             {
                 content.map((content, key)=> {
+                    const downloadName = content.download_name;
                     return(
                         <tr key={key}> 
-                            <td>{itemSpan(content.download_name)}</td>
+                            <td>{itemSpan(link(downloadName))}</td>
                             <td>{itemSpan(content.path_of_file)}</td>
-                            <td>{itemStatus(content.status)}</td>
+                            <td 
+                                onClick={
+                                    ()=>enableDisable(
+                                        (downloadName),
+                                        content.status,
+                                        key,
+                                        {setSnack,setSnackProp,setContents}
+                                    )
+                                }
+                                style={
+                                    {cursor:"pointer"}
+                                }
+                                >
+                                {itemStatus(content.status)}</td>
                         </tr>
                     );
                 })
@@ -140,6 +154,12 @@ function tableFooter({items,count},{prev,next}){
     )
 }
 
+function link(id){
+    return (
+        <a target="blank" href={"../download/"+id}> {id}</a>
+    );
+}
+
 function itemSpan(content){
     return(
         <span>{content}</span>
@@ -148,8 +168,51 @@ function itemSpan(content){
 
 function itemStatus(content){
     return (
-        <span>{content? "enabled": "disabled"}</span>
+        <span>{content === "Y" ? "enabled": "disabled"}</span>
     );
+}
+
+const enableDisable = (id,action,key,{setSnack,setSnackProp,setContents}) => {
+    action = action === "Y" ? "N" : "Y";
+    managelinks({update:action,id:id})
+    .then((response)=>  (response.status === 200) ? response.json() : {})
+    .then((json)=>{
+            const err = (type="error",msg='error contacting server')=>{
+                setSnackProp({
+                    msg:msg,
+                    type:type
+                });
+                return setSnack(true) || true;
+            }
+            const success = (msg)=> {
+                err("success",msg);
+            }
+            if(!json && err()) {return}
+            if(json.response === "success"){
+                setContents((prevState)=>{
+                    let copy = prevState;
+                    copy.content.forEach(element => {
+                        if(element.download_name === id){
+                            element.status = action;
+                        }
+                    });
+                    return({
+                        ...prevState,
+                        content:copy.content
+                    });
+                })
+                success(json.content.status);
+            } else {
+                const  err = json.response 
+                    ? json.errors.errMsg && json.errors.errMsg
+                    : "can not fetch list from server"
+                setSnackProp({
+                    msg:err,
+                    type:"error"
+                });
+                setSnack(true);
+            }
+        })
 }
 
 export default ManageLinks;
