@@ -135,9 +135,8 @@ class DownloadPage extends React.Component{
         }
 
         return( 
-            <FadeIn>
-                {content}
-            </FadeIn>
+           content? <FadeIn>{content}</FadeIn> : ""
+                
         );
     }
 
