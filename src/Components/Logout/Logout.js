@@ -16,10 +16,9 @@ function Logout(props){
 }
 
 const reloadPage = (history) => {
-    debugger;
     LogoutApi().then((resp)=>{
         return (resp.status === 200) && resp.json();
-    }).then((json)=> history.push("/"));
+    }).then((json)=> window.location.reload());
    
 }
 
