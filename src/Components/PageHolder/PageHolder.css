@@ -5,3 +5,31 @@
 .actual-page{
     padding:120px 40px;
 }
+
+.routeTransition-enter {
+    opacity: 0.01;
+}
+
+.routeTransition-enter.routeTransition-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+
+.routeTransition-exit {
+    opacity: 1;
+}
+
+.routeTransition-exit.routeTransition-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
+/*right 0 left 0, fill parent*/
+.page-render-area{
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.transition-group{
+    position: relative;
+}
