@@ -55,7 +55,10 @@ class FileManager extends React.Component{
                 ...prevState,
             popup: props
             }
-        },()=>window.$('.ui.modal').modal('show'));
+        },()=>{
+            if(window.$('.ui.modal').get(1)) window.$('.ui.modal').get(1).remove()
+            window.$('.ui.modal').modal('show')
+            });
     }
 
     render(){
@@ -63,8 +66,8 @@ class FileManager extends React.Component{
             <div>
                 <Loading show={this.state.loading}/>
                 <FadeIn>
-                    <FileBrowser files={this.state.files} onSelectFile={this.fileClickHandler} />
-                    {this.state.popup ? <FileInfo property={ this.state.popup }/>
+                    {this.state.files && <FileBrowser files={this.state.files} onSelectFile={this.fileClickHandler} />}
+                    { this.state.popup ? <FileInfo key={this.state.popup.key} property={ this.state.popup }/>
                     : ""}
                 </FadeIn>
             </div>
