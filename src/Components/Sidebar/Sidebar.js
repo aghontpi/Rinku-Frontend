@@ -12,30 +12,37 @@ import FadeIn from "react-fade-in";
 
 function Sidebar(props){
 
+    const fadeInWrapper = (component) => {
+        return(
+            <FadeIn>
+                {component}
+            </FadeIn>
+        );
+    }
     //@todo get this from server side
     const routes = [
         {
             path:"/home",
             exact:true,
-            children: () =>  <FileManager/> ,
+            children: () =>  fadeInWrapper(<FileManager/>),
             name:"explorer"
         },
         {
             path:"/manage-links",
             exact:true,
-            children: () =>  <ManageLinks/> ,
+            children: () =>  fadeInWrapper(<ManageLinks/>),
             name:"manage links"
         },
         {
             path:"/url-shorten",
             exact:true,
-            children: () =>  <div>url shorten</div> ,
+            children: () =>  fadeInWrapper(<div>url shorten</div>) ,
             name:"url shorten"
         },
         {
             path:"/stats",
             exact:true,
-            children: () =>  <Stats/>,
+            children: () =>  fadeInWrapper(<Stats/>),
             name:"stats"
         },
     ];

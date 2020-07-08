@@ -5,6 +5,7 @@ import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
 import { Redirect } from 'react-router-dom'
 import FadeIn from "react-fade-in";
+import {Loading} from "../Loading/Loading";
 class Login extends React.Component{
     constructor(){
         super();
@@ -15,7 +16,8 @@ class Login extends React.Component{
                 rmbrFlag: false,
                 error:"",
             },
-            loggedIn: false
+            loggedIn: false,
+            loading:false
             
         };
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -61,10 +63,21 @@ class Login extends React.Component{
             }
     }
 
+    chanageLoading = (loadBool) =>{
+        this.setState((prevState)=>{
+            return({
+                ...prevState,
+                loading:loadBool
+            })
+        })
+    }
+
     formSubmit = (event)=> {
+        this.chanageLoading(true);
         event.preventDefault();
         const promise = LoginApi(this.state.form);
         promise.then((response)=>{
+            this.chanageLoading(false);
             if(response.status === 200){
                 return response.json();
             }
@@ -112,6 +125,7 @@ class Login extends React.Component{
 
         return(
             <FadeIn>
+                <Loading show={this.state.loading}/>
                 <div>
                     { this.raisedSegmentForm() }
                 </div>

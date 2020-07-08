@@ -3,8 +3,12 @@ import style from "./style.module.css";
 import { managelinks } from "./../../Api/ManageLinks"
 import {SnackBar} from "../SnackBar/Snackbar";
 import {usePrevious} from "../Utils";
+import {Loading} from "../Loading/Loading";
+import FadeIn from "react-fade-in";
+
 function ManageLinks(props){
     const [contents, setContents] = useState({items:10,content:null})
+    const [loading, setLoading] = useState(true);
     const [snack, setSnack] = useState(false);
     const [snackProp, setSnackProp] = useState({
         msg:"",
@@ -12,9 +16,11 @@ function ManageLinks(props){
     });
     const prevcontent = usePrevious(contents);
     const apiCall = () => {
+        setLoading(true);
         managelinks({limit:contents.items})
             .then((response)=>  (response.status === 200) ? response.json() : {})
             .then((json)=>{
+                    setLoading(false);
                     if(json.response === "success"){
                         const list = JSON.parse(json.content.list)
                         const err = ()=>{
@@ -44,6 +50,7 @@ function ManageLinks(props){
 
     useEffect(()=>{
         apiCall();
+        window.$('table').transition('fade up');
     },[])
 
     useEffect(()=>{
@@ -54,6 +61,7 @@ function ManageLinks(props){
     return (
         <div className="linksholder">
             <div>Links Available</div>
+            { Loading( props={show:loading}) }
             { contents.content !== null && list(contents,setContents,{setSnack,setSnackProp}) }
             {snack && <SnackBar params={
                 {show:true,
@@ -73,7 +81,7 @@ function list({items, content},setContents,{setSnack,setSnackProp}){
             const itemsChange = (+prevstate.items) + (+value) 
             console.log(prevstate,itemsChange);
             return{
-                ...prevstate,
+                content:null,
                 items: itemsChange,
             }
         });
@@ -85,41 +93,42 @@ function list({items, content},setContents,{setSnack,setSnackProp}){
     const prevBtnClick = () => {
         modifyItems(-10)
     }
-    console.log(content);
     return(
-        <table className="ui stripped table">
-            {
-                tableHeader()
-            }
-            {
-                content.map((content, key)=> {
-                    const downloadName = content.download_name;
-                    return(
-                        <tr key={key}> 
-                            <td>{itemSpan(link(downloadName))}</td>
-                            <td>{itemSpan(content.path_of_file)}</td>
-                            <td 
-                                onClick={
-                                    ()=>enableDisable(
-                                        (downloadName),
-                                        content.status,
-                                        key,
-                                        {setSnack,setSnackProp,setContents}
-                                    )
-                                }
-                                style={
-                                    {cursor:"pointer"}
-                                }
-                                >
-                                {itemStatus(content.status)}</td>
-                        </tr>
-                    );
-                })
-            }
-            {
-                tableFooter({items:items,count:content.length},{prev:prevBtnClick,next:nextBtnClick})
-            }
-        </table>
+        <FadeIn>
+            <table className="ui stripped table">
+                {
+                    tableHeader()
+                }
+                {
+                    content.map((content, key)=> {
+                        const downloadName = content.download_name;
+                        return(
+                            <tr key={key}> 
+                                <td>{itemSpan(link(downloadName))}</td>
+                                <td>{itemSpan(content.path_of_file)}</td>
+                                <td 
+                                    onClick={
+                                        ()=>enableDisable(
+                                            (downloadName),
+                                            content.status,
+                                            key,
+                                            {setSnack,setSnackProp,setContents}
+                                        )
+                                    }
+                                    style={
+                                        {cursor:"pointer"}
+                                    }
+                                    >
+                                    {itemStatus(content.status)}</td>
+                            </tr>
+                        );
+                    })
+                }
+                {
+                    tableFooter({items:items,count:content.length},{prev:prevBtnClick,next:nextBtnClick})
+                }
+            </table>
+        </FadeIn>
     );
 }
 
@@ -156,19 +165,19 @@ function tableFooter({items,count},{prev,next}){
 
 function link(id){
     return (
-        <a target="blank" href={"../download/"+id}> {id}</a>
+        <FadeIn><a target="blank" href={"../download/"+id}> {id}</a></FadeIn> 
     );
 }
 
 function itemSpan(content){
     return(
-        <span>{content}</span>
+        <FadeIn><span>{content}</span></FadeIn>
     );
 }
 
 function itemStatus(content){
     return (
-        <span>{content === "Y" ? "enabled": "disabled"}</span>
+        <FadeIn><span>{content === "Y" ? "enabled": "disabled"}</span></FadeIn>
     );
 }
 

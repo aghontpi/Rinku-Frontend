@@ -2,6 +2,8 @@ import React,{useEffect, useState} from "react";
 import {SnackBar} from "../SnackBar/Snackbar";
 import {Chart} from "./Barchar";
 import {Stats as Sapi} from "../../Api/Stats";
+import {Loading} from "../Loading/Loading";
+import FadeIn from "react-fade-in";
 
 function Stats(){
     const [snack, setSnack] = useState(false);
@@ -10,10 +12,12 @@ function Stats(){
         type:"success"
     });
     const [stats,setStats] = useState(null);
+    const [loading, setLoading] = useState(true);
     useEffect(()=>{
         Sapi({date:"datehere"})
             .then((response)=>  (response.status === 200) ? response.json() : {})
             .then((json)=>{
+                setLoading(false);
                 if(json.response !== "success"){
                     const  err = json.response 
                                 ? json.errors.errMsg && json.errors.errMsg
@@ -40,11 +44,13 @@ function Stats(){
 
     return(
         <div className="chartHolder">
+            <FadeIn>
+            <Loading show={loading}/>
             <div>Dowload Stats</div>
             <div style={{height:"600px"}}>
-            <Chart stats={stats}/>
+                <Chart stats={stats}/>
             </div>
-            
+            </FadeIn>
             
             {snack && <SnackBar params={
                 {show:true,
