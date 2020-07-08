@@ -8,6 +8,7 @@ import style from "./download.module.css";
 import { Download } from "../../Api/Download";
 import folder from "./folder.webp" ;
 import { bytesToReadable } from "./../Utils";
+import FadeIn from "react-fade-in";
 class DownloadPage extends React.Component{
     constructor(){
         super()
@@ -133,7 +134,11 @@ class DownloadPage extends React.Component{
             content = this.donwloadContent();
         }
 
-        return( content );
+        return( 
+            <FadeIn>
+                {content}
+            </FadeIn>
+        );
     }
 
 }

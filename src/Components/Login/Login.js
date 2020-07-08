@@ -4,7 +4,7 @@ import LoginForm from  "../Forms/LoginForm";
 import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
 import { Redirect } from 'react-router-dom'
-
+import FadeIn from "react-fade-in";
 class Login extends React.Component{
     constructor(){
         super();
@@ -111,9 +111,11 @@ class Login extends React.Component{
         );
 
         return(
-            <div>
-            { this.raisedSegmentForm() }
-            </div>
+            <FadeIn>
+                <div>
+                    { this.raisedSegmentForm() }
+                </div>
+            </FadeIn>
         );
     }
 }

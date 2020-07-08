@@ -8,6 +8,7 @@ import FileManager from "./../FileManager/FileManager";
 import ManageLinks from "./../ManageLinks/ManageLinks";
 import PageHolder from "./../PageHolder/PageHolder";
 import {Stats} from "../Stats"
+import FadeIn from "react-fade-in";
 
 function Sidebar(props){
 
@@ -46,8 +47,11 @@ function Sidebar(props){
         <Router>
             <div className="main-sidebar">
                 <div className="user-title">
+                    <FadeIn>
                     <h4>Hi {userNickName}</h4>
+                    </FadeIn>
                 </div>
+                
                 <div className="user-content">
                     <ul className="user-menuitems">
                         {navItems(routes)}
@@ -67,14 +71,16 @@ const navItems = (items) => {
     return(
         items.map((item,key)=>{
             return(
-                <li key={key}> 
-                    <NavLink 
-                        to={item.path}
-                        activeStyle={ linkActiveStyle }
-                    >
-                        {item.name}
-                    </NavLink>
-                </li>
+                <FadeIn>
+                    <li key={key}> 
+                        <NavLink 
+                            to={item.path}
+                            activeStyle={ linkActiveStyle }
+                        >
+                            {item.name}
+                        </NavLink>
+                    </li>
+                </FadeIn>
             )
         })
     );
