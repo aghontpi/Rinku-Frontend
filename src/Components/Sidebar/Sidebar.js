@@ -9,6 +9,7 @@ import ManageLinks from "./../ManageLinks/ManageLinks";
 import PageHolder from "./../PageHolder/PageHolder";
 import {Stats} from "../Stats"
 import FadeIn from "react-fade-in";
+import Logout from "../Logout/Logout"
 import {Compass, BarChart2, Filter} from "react-feather";
 
 function Sidebar(props){
@@ -61,6 +62,7 @@ function Sidebar(props){
                 <div className="user-title">
                     <FadeIn>
                     <h4>Hi {userNickName}</h4>
+                    <Logout/>
                     </FadeIn>
                 </div>
                 
@@ -77,8 +79,7 @@ function Sidebar(props){
 
 const navItems = (items) => {
     const linkActiveStyle = {
-        borderBottom: "solid 3px orange",
-        transition: "0.5s ease-in-out"
+        color:"#f5deb3"
       }
     return(
         items.map((item,key)=>{
@@ -87,6 +88,7 @@ const navItems = (items) => {
                     <li key={key}> 
                         <NavLink 
                             to={item.path}
+                            activeStyle={linkActiveStyle}
                         >   {item.icon}
                             <span>{item.name}</span>
                         </NavLink>
