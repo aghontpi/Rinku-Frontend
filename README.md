@@ -45,6 +45,10 @@ server/interfaces/config.php
    
     /* tells application the root path to operate on */
     const path = ".";
+    const host = "host-name-here";
+    const database = "database-name-here";
+    const user = "username-here";
+    const password = "password-here";
 
 ```
 
