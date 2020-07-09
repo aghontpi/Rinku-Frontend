@@ -88,7 +88,7 @@ const navItems = (items) => {
                         <NavLink 
                             to={item.path}
                         >   {item.icon}
-                            {item.name}
+                            <span>{item.name}</span>
                         </NavLink>
                     </li>
                 </FadeIn>
