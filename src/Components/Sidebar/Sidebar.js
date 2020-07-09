@@ -9,6 +9,7 @@ import ManageLinks from "./../ManageLinks/ManageLinks";
 import PageHolder from "./../PageHolder/PageHolder";
 import {Stats} from "../Stats"
 import FadeIn from "react-fade-in";
+import {Compass, BarChart2, Filter} from "react-feather";
 
 function Sidebar(props){
 
@@ -25,25 +26,29 @@ function Sidebar(props){
             path:"/home",
             exact:true,
             children: () =>  fadeInWrapper(<FileManager/>),
-            name:"explorer"
+            name:"explorer",
+            icon:<Compass className="navIcon"/>
         },
         {
             path:"/manage-links",
             exact:true,
             children: () =>  fadeInWrapper(<ManageLinks/>),
-            name:"manage links"
+            name:"manage links",
+            icon:<Filter className="navIcon"/>
         },
         {
             path:"/url-shorten",
             exact:true,
             children: () =>  fadeInWrapper(<div>url shorten</div>) ,
-            name:"url shorten"
+            name:"url shorten",
+            icon:<Compass className="navIcon"/>
         },
         {
             path:"/stats",
             exact:true,
             children: () =>  fadeInWrapper(<Stats/>),
-            name:"stats"
+            name:"stats", 
+            icon:<BarChart2 className="navIcon"/>
         },
     ];
 
@@ -82,8 +87,7 @@ const navItems = (items) => {
                     <li key={key}> 
                         <NavLink 
                             to={item.path}
-                            activeStyle={ linkActiveStyle }
-                        >
+                        >   {item.icon}
                             {item.name}
                         </NavLink>
                     </li>

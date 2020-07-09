@@ -32,8 +32,7 @@
 }
 
 .user-menuitems li{
-    margin: 2rem 1rem;
-    padding:0px 20px;
+    margin: 2rem 2rem;
     text-transform: capitalize;
 }
 
@@ -58,3 +57,9 @@ li:hover:after { transform: scaleX(1); }
 li.leftanimation:after{  transform-origin:  0% 50%; }
 
 */
+
+.navIcon{
+    position: relative;
+    top: 6px;
+    margin: 0px 8px;
+}
