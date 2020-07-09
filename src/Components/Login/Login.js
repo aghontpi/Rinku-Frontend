@@ -148,8 +148,11 @@ function ErrorMessage(props){
 }
 
 const checkLoggedIn = () => {
-    let loggedInUser = sessionStorage.getItem("user");
-    return (loggedInUser != null);
+    let state =  true;
+    ['nick','user','loginTime'].forEach((item)=>{
+         sessionStorage.getItem(item) == null && (state = false)
+    });
+    return state;
 }
 export {checkLoggedIn}
 export default Login;
