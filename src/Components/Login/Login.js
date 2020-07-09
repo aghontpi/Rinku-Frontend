@@ -5,7 +5,6 @@ import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
 import { Redirect } from 'react-router-dom'
 import FadeIn from "react-fade-in";
-import {Loading} from "../Loading/Loading";
 class Login extends React.Component{
     constructor(){
         super();
@@ -107,6 +106,7 @@ class Login extends React.Component{
                                 }}/>
                                 <LoginForm 
                                 form = {this.state.form} 
+                                loading = {this.state.loading}
                                 changeCallBack={this.handleFormChange} 
                                 formSubmitCallBack={this.formSubmit}/>
                             </div>
@@ -125,7 +125,6 @@ class Login extends React.Component{
 
         return(
             <FadeIn>
-                <Loading show={this.state.loading}/>
                 <div>
                     { this.raisedSegmentForm() }
                 </div>

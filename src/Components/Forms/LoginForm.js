@@ -43,7 +43,7 @@ const LoginForm =  (params)  => {
                 <button 
                     type="submit" 
                     className="ui button primary">
-                        Login 
+                      {params.loading ? "logging in..": "Login"} 
                 </button>
             </div>
         </div>
