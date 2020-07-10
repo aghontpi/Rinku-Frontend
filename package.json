@@ -9,8 +9,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
+    "react-google-recaptcha": "^2.1.0",
     "react-keyed-file-browser": "^1.8.0",
     "react-scripts": "3.4.1",
+    "react-switch": "^5.0.1",
     "react-transition-group": "^4.4.1"
   },
   "scripts": {

@@ -5,7 +5,7 @@ import {SnackBar} from "../SnackBar/Snackbar";
 import {usePrevious} from "../Utils";
 import {Loading} from "../Loading/Loading";
 import FadeIn from "react-fade-in";
-
+import Switch from "react-switch";
 function ManageLinks(props){
     const [contents, setContents] = useState({items:10,content:null})
     const [loading, setLoading] = useState(true);
@@ -119,7 +119,7 @@ function list({items, content},setContents,{setSnack,setSnackProp}){
                                         {cursor:"pointer"}
                                     }
                                     >
-                                    {itemStatus(content.status)}</td>
+                                    {itemStatus(content.status,key+"icon")}</td>
                             </tr>
                         );
                     })
@@ -175,9 +175,20 @@ function itemSpan(content){
     );
 }
 
-function itemStatus(content){
+
+
+function itemStatus(content,key){
     return (
-        <FadeIn><span>{content === "Y" ? "enabled": "disabled"}</span></FadeIn>
+        <FadeIn><span key={key}>{<
+            Switch id={key} 
+            onChange={()=>{}}
+            checked={content === "Y"}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            onColor="#000"
+            />
+            
+            }</span></FadeIn>
     );
 }
 
