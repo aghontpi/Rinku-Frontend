@@ -1,9 +1,10 @@
 .page-holder{
-    padding-left: 188px;
+    padding-left: 213px;
+    width: 100%;
+    height: 100%;
 }
 
 .actual-page{
-    padding:120px 40px;
 }
 
 .routeTransition-enter {

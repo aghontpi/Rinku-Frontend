@@ -19,7 +19,7 @@ const Loading = (props) => {
             <div className="loading-container">
                 <div className="loading-contents">
                     <FadeIn>
-                        <Lottie options={options} width="400px" height="400px" speed="1.5"/> 
+                        <Lottie options={options} width="400px" height="400px" speed={1.5}/> 
                     </FadeIn>
                 </div>
                 

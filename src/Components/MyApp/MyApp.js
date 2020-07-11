@@ -14,7 +14,7 @@ import DownloadPage from "../DownloadPage/DownloadPage"
 
 function MyApp(){
     return(
-        <div><Router>
+        <Router>
                 <Switch>
                     <LoginRouter exact path="/">
                     <Login/>
@@ -26,8 +26,7 @@ function MyApp(){
                         <DownloadPage/>
                     </Route>
                 </Switch>
-            </Router>
-        </div>
+        </Router>
     );
 }
 

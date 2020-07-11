@@ -13,7 +13,7 @@ const PageHolder = (props) => {
     let windowLocation = useLocation();
     return(
         <div className="page-holder">
-        <PageHeader />
+        <PageHeader location={windowLocation}/>
 
                 <div className="actual-page">
                     <FadeIn delay="100" transitionDuration="800">
