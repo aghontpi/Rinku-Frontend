@@ -1,5 +1,4 @@
 import React,{useEffect, useState} from "react";
-import style from "./style.module.css";
 import { managelinks } from "./../../Api/ManageLinks"
 import {SnackBar} from "../SnackBar/Snackbar";
 import {usePrevious} from "../Utils";
@@ -51,16 +50,17 @@ function ManageLinks(props){
     useEffect(()=>{
         apiCall();
         window.$('table').transition('fade up');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
         console.log(contents)
         prevcontent && (contents.items !== prevcontent.items) && apiCall();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[contents])
 
     return (
-        <div className="linksholder">
-            <div>Links Available</div>
+        <React.Fragment>
             { Loading( props={show:loading}) }
             { contents.content !== null && list(contents,setContents,{setSnack,setSnackProp}) }
             {snack && <SnackBar params={
@@ -70,7 +70,7 @@ function ManageLinks(props){
                 type:snackProp.type,
                 cb:setSnack}
                 }/>}
-        </div>
+        </React.Fragment>
     );
 }
 
@@ -116,8 +116,9 @@ function list({items, content},setContents,{setSnack,setSnackProp}){
                                         )
                                     }
                                     style={
-                                        {cursor:"pointer"}
+                                        {cursor:"pointer", paddingRight:"24px"}
                                     }
+                                    className="right aligned"
                                     >
                                     {itemStatus(content.status,key+"icon")}</td>
                             </tr>
@@ -137,8 +138,9 @@ function tableHeader(){
         <thead>
             <tr>
                 <th>downloadId</th>
-                <th>Path</th>
-                <th>Status</th>
+                <th >Path</th>
+                <th style={{paddingRight:"40px"}} 
+                    className="right aligned">Status</th>
             </tr>
         </thead>
     );

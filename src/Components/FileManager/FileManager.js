@@ -63,14 +63,14 @@ class FileManager extends React.Component{
 
     render(){
         return (
-            <div>
-                <Loading show={this.state.loading}/>
-                <FadeIn>
-                    {this.state.files && <FileBrowser files={this.state.files} onSelectFile={this.fileClickHandler} />}
-                    { this.state.popup ? <FileInfo key={this.state.popup.key} property={ this.state.popup }/>
-                    : ""}
-                </FadeIn>
-            </div>
+            <React.Fragment>
+                    <Loading show={this.state.loading}/>
+                    <FadeIn>
+                        {this.state.files && <FileBrowser files={this.state.files} onSelectFile={this.fileClickHandler} />}
+                        { this.state.popup ? <FileInfo key={this.state.popup.key} property={ this.state.popup }/>
+                        : ""}
+                    </FadeIn>
+            </React.Fragment>
         );
     }
 }

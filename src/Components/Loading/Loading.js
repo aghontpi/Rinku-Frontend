@@ -16,14 +16,14 @@ const Loading = (props) => {
       };
     const content = 
         props && props.show ?
+        <React.Fragment>
             <div className="loading-container">
-                <div className="loading-contents">
-                    <FadeIn>
-                        <Lottie options={options} width="400px" height="400px" speed={1.5}/> 
-                    </FadeIn>
-                </div>
-                
             </div>
+             <div className="loading-contents">
+             <Lottie options={options} width="400px" height="400px" speed={1.5}/> 
+     
+            </div>
+        </React.Fragment>
             : "";
     
         

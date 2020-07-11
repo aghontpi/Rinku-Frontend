@@ -2,8 +2,7 @@ import React from "react"
 import { ResponsiveBar } from '@nivo/bar';
 
 const Chart = (props) => {
-    const demoData = [{"fname":"index.php","downloads":'200'},{"fname":"indesx.php","downloads":'100'}]
-    console.log(props,demoData);
+    //const demoData = [{"fname":"index.php","downloads":'200'},{"fname":"indesx.php","downloads":'100'}]
     return(
         props.stats && <ResponsiveBar
             data={props.stats}

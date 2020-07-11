@@ -6,14 +6,15 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    z-index: 9999;
-    opacity: 1;
+    background-color: rgb(194, 194, 194);
+    z-index: 1000;
+    opacity: 0.4;
 }
 
 .loading-contents{
     position: absolute;
-    z-index: 100000;
+    z-index: 2000;
     opacity: 1;
     top: 25%;
-    left: 37%; 
+    left: 40%; 
 }

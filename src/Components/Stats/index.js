@@ -43,10 +43,9 @@ function Stats(){
     },[])
 
     return(
-        <div className="chartHolder">
+        <React.Fragment>
             <FadeIn>
             <Loading show={loading}/>
-            <div>Dowload Stats</div>
             <div style={{height:"600px"}}>
                 <Chart stats={stats}/>
             </div>
@@ -59,7 +58,7 @@ function Stats(){
                 type:snackProp.type,
                 cb:setSnack}
                 }/>}
-        </div>
+        </React.Fragment>
     );
 }
 

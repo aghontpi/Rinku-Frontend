@@ -5,6 +5,7 @@
 }
 
 .actual-page{
+    margin-top: 8px;
 }
 
 .routeTransition-enter {
@@ -27,9 +28,10 @@
 
 /*right 0 left 0, fill parent*/
 .page-render-area{
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
+    padding: 0px 32px;
 }
 .transition-group{
     position: relative;
