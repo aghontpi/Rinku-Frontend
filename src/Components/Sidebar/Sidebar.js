@@ -38,13 +38,6 @@ function Sidebar(props){
             icon:<Filter className="navIcon"/>
         },
         {
-            path:"/url-shorten",
-            exact:true,
-            children: () =>  fadeInWrapper(<div>url shorten</div>) ,
-            name:"url shorten",
-            icon:<Compass className="navIcon"/>
-        },
-        {
             path:"/stats",
             exact:true,
             children: () =>  fadeInWrapper(<Stats/>),
