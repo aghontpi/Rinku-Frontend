@@ -86,6 +86,7 @@ class Login extends React.Component{
     formSubmit = ()=> {
         const callBack = ()=>{
                 LoginApi(this.state.form).then((response)=>{
+                this.recaptchaRef.current.reset();
                 this.chanageLoading(false);
                 if(response.status === 200){
                     return response.json();
@@ -94,7 +95,6 @@ class Login extends React.Component{
                     //@todo: handle status response errors
                 }
             }).then((jsonResp)=>{
-                this.recaptchaRef.current.reset();
                 if(jsonResp.response === "error"){
                     this.changeErrorState(jsonResp.errors.errMsg);
                 } else if (jsonResp.response === "success"){
