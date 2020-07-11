@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'ConcertOne';
+    src: local('ConcertOne'), url("/static/fonts/ConcertOne-Regular.ttf") format('truetype');
+  }
+
+  @font-face {
+    font-family: 'FredokaOne';
+    src: local('FredokaOne'), url("/static/fonts/FredokaOne-Regular.ttf") format('truetype');
+  }
+
+  @font-face {
+    font-family: 'telefon-black';
+    src: local('telefon-black'), url("/static/fonts/telefon-black.woff") format('woff');
+  }
+
+  html{
+      font-family: 'Lato';
+      font-weight: 400;
+  }
