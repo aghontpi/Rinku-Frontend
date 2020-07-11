@@ -5,6 +5,8 @@ import LoginApi from "../../Api/Login"
 import LoginErr from "../Error/LoginErr";
 import { Redirect } from 'react-router-dom'
 import FadeIn from "react-fade-in";
+import ReCAPTCHA from "react-google-recaptcha";
+import { createPortal } from "react-dom";
 class Login extends React.Component{
     constructor(){
         super();
@@ -14,12 +16,14 @@ class Login extends React.Component{
                 pword: "",
                 rmbrFlag: false,
                 error:"",
+                captcha:"",
             },
             loggedIn: false,
             loading:false
             
         };
         this.handleFormChange = this.handleFormChange.bind(this);
+        this.recaptchaRef = React.createRef();
     }
 
     handleFormChange(event){
@@ -49,7 +53,6 @@ class Login extends React.Component{
     }
 
     changeLoginState = (resp) => {
-            console.log(resp);
             if(resp.content !== "undefined"){
                 sessionStorage.setItem("user", resp.content.user);
                 sessionStorage.setItem("loginTime", resp.content.loginTime);
@@ -58,7 +61,6 @@ class Login extends React.Component{
                     form:this.state.form,
                     loggedIn:true
                 });
-                console.log("state",this.state);
             }
     }
 
@@ -71,25 +73,37 @@ class Login extends React.Component{
         })
     }
 
-    formSubmit = (event)=> {
-        this.chanageLoading(true);
-        event.preventDefault();
-        const promise = LoginApi(this.state.form);
-        promise.then((response)=>{
-            this.chanageLoading(false);
-            if(response.status === 200){
-                return response.json();
+    setCapchaResponse = (cb) => {
+        this.setState((prevState)=>{return({
+            ...prevState,
+            form:{
+                ...prevState.form,
+                captcha: this.recaptchaRef.current.getValue()
             }
-            else {
-                //@todo: handle status response errors
-            }
-        }).then((jsonResp)=>{
-            if(jsonResp.response === "error"){
-                this.changeErrorState(jsonResp.errors.errMsg);
-            } else if (jsonResp.response === "success"){
-                this.changeLoginState(jsonResp);
-            }
-        });
+        })},()=>cb())
+    }
+
+    formSubmit = ()=> {
+        const callBack = ()=>{
+                LoginApi(this.state.form).then((response)=>{
+                this.chanageLoading(false);
+                if(response.status === 200){
+                    return response.json();
+                }
+                else {
+                    //@todo: handle status response errors
+                }
+            }).then((jsonResp)=>{
+                this.recaptchaRef.current.reset();
+                if(jsonResp.response === "error"){
+                    this.changeErrorState(jsonResp.errors.errMsg);
+                } else if (jsonResp.response === "success"){
+                    this.changeLoginState(jsonResp);
+                }
+            });
+        }
+        this.setCapchaResponse(callBack);
+        
     }
 
     raisedSegmentForm(){
@@ -108,12 +122,29 @@ class Login extends React.Component{
                                 form = {this.state.form} 
                                 loading = {this.state.loading}
                                 changeCallBack={this.handleFormChange} 
-                                formSubmitCallBack={this.formSubmit}/>
+                                formSubmitCallBack={this.reCaptcha}/>
                             </div>
                         </div>
                     </div>
                 </div>
             );
+    }
+
+    recaptchaRender = ()=> {
+        //captcha render
+        return  <ReCAPTCHA
+        ref={this.recaptchaRef}
+        sitekey="6Le0ELAZAAAAAE-8sVHZD_AtZhSlweSznZJVDHal"
+        onChange={ ()=>this.formSubmit() }
+        size="invisible"
+      />;
+    }
+
+    reCaptcha = (event) => {
+        this.chanageLoading(true);
+        event.preventDefault();
+        // recaptcha execute
+        this.recaptchaRef.current.execute()
     }
 
 
@@ -127,6 +158,11 @@ class Login extends React.Component{
             <FadeIn>
                 <div>
                     { this.raisedSegmentForm() }
+                    {   createPortal(
+                            this.recaptchaRender(),
+                            document.getElementsByTagName('body')[0]
+                        )
+                    }
                 </div>
             </FadeIn>
         );
