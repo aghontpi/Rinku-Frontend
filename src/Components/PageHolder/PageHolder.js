@@ -17,16 +17,6 @@ const PageHolder = (props) => {
 
                 <div className="actual-page">
                     <FadeIn delay="100" transitionDuration="800">
-                        <div className="title-holder">
-                            <div className="page-title">
-                            </div>
-                        </div>
-                            <TransitionGroup>
-                                <CSSTransition
-                                    key={windowLocation.key}
-                                    classNames="routeTransition"
-                                    timeout={{ enter: 300, exit: 300 }}
-                                >
                                 <div className="page-render-area">
                                     <Switch>
                                         { 
@@ -44,8 +34,6 @@ const PageHolder = (props) => {
                                         }
                                     </Switch>
                                 </div>
-                                </CSSTransition>
-                            </TransitionGroup>
                     </FadeIn>
                 </div>
         </div>
