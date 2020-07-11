@@ -22,6 +22,8 @@ class DownloadPage extends React.Component{
             fileSize:"filesize",
             error:"",
             captcha:false,
+            loading:false,
+            captchaLoading:false,
         }
         this.recaptchaRef = React.createRef();
     }
@@ -68,19 +70,49 @@ class DownloadPage extends React.Component{
         return  <ReCAPTCHA
         ref={this.recaptchaRef}
         sitekey="6Le0ELAZAAAAAE-8sVHZD_AtZhSlweSznZJVDHal"
-        onChange={ ()=>this.downloadClick() }
+        onChange={ ()=> {
+            this.setCaptchaLoading(false);
+            this.downloadClick();
+        } }
         size="invisible"
       />;
     }
 
     reCaptcha = () => {
         // recaptcha execute
-        this.state.captcha ? this.recaptchaRef.current.execute()
+        this.state.captcha 
+            ? (()=>{
+                this.setCaptchaLoading(true);
+                this.recaptchaRef.current.execute()
+            })()
             : this.downloadClick();
+    }
+
+    setLoading = (stateBool) => {
+        this.setState((prevState)=>{
+            return(
+                {
+                ...prevState,
+                loading:stateBool
+                }
+            )
+        })
+    }
+
+    setCaptchaLoading = (stateBool) => {
+        this.setState((prevState)=>{
+            return(
+                {
+                ...prevState,
+                captchaLoading:stateBool
+                }
+            )
+        })
     }
 
     downloadClick = () => {
         if (this.state.fileid === "") return;
+        this.setLoading(true);
         let promise =  Download({
             fileid:this.state.fileid,
             action:'download',
@@ -89,6 +121,7 @@ class DownloadPage extends React.Component{
         promise.then((response) => {
             return (response.status === 200) ? response.json() : {};
         }).then((json) => {
+            this.setLoading(false);
             // reset the captcha after response from the server
             this.state.captcha && this.recaptchaRef.current.reset();
             if(json.response === "success"){
@@ -119,7 +152,10 @@ class DownloadPage extends React.Component{
                 </div>
                 <div onClick={this.reCaptcha} className={style.download_button}>
                     <div>
-                        <span>DOWNLOAD</span>
+                       {!this.state.captchaLoading ? 
+                        <span>{!this.state.loading ? "DOWNLOAD": "Starting.."}</span>
+                        :<span>Checking Captcha..</span>
+                       }
                     </div>
                 </div>
                 { this.state.captcha && createPortal(this.recaptchaRender(),document.getElementsByTagName('body')[0])}
