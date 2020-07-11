@@ -1,5 +1,6 @@
 import React from "react"
 import { withRouter } from "react-router";
+import ReCAPTCHA from "react-google-recaptcha";
 // anyone can access this component, even logged out users
 // thus this component requires a seperate router instead of 
 // nested router.
@@ -9,6 +10,9 @@ import { Download } from "../../Api/Download";
 import folder from "./folder.webp" ;
 import { bytesToReadable } from "./../Utils";
 import FadeIn from "react-fade-in";
+import { createPortal } from "react-dom";
+
+
 class DownloadPage extends React.Component{
     constructor(){
         super()
@@ -17,7 +21,9 @@ class DownloadPage extends React.Component{
             fileid:"",
             fileSize:"filesize",
             error:"",
+            captcha:false,
         }
+        this.recaptchaRef = React.createRef();
     }
 
     componentDidMount(){
@@ -42,6 +48,7 @@ class DownloadPage extends React.Component{
                         ...prevState,
                         filename:json.content.file.filename,
                         fileSize: bytesToReadable(json.content.file.filesize),
+                        captcha:(json.content.file.captcha === "enable")
                     })
                 });
             } else if(json.response === "error"){
@@ -56,12 +63,34 @@ class DownloadPage extends React.Component{
 
     }
 
+    recaptchaRender = ()=> {
+        //captcha render
+        return  <ReCAPTCHA
+        ref={this.recaptchaRef}
+        sitekey="6Le0ELAZAAAAAE-8sVHZD_AtZhSlweSznZJVDHal"
+        onChange={ ()=>this.downloadClick() }
+        size="invisible"
+      />;
+    }
+
+    reCaptcha = () => {
+        // recaptcha execute
+        this.state.captcha ? this.recaptchaRef.current.execute()
+            : this.downloadClick();
+    }
+
     downloadClick = () => {
         if (this.state.fileid === "") return;
-        let promise =  Download({fileid:this.state.fileid,action:'download'})
+        let promise =  Download({
+            fileid:this.state.fileid,
+            action:'download',
+            captcha: this.state.captcha ? this.recaptchaRef.current.getValue(): ""
+        })
         promise.then((response) => {
             return (response.status === 200) ? response.json() : {};
         }).then((json) => {
+            // reset the captcha after response from the server
+            this.state.captcha && this.recaptchaRef.current.reset();
             if(json.response === "success"){
                 window.location.href = json.content.file.downloadUrl;    
             }
@@ -88,12 +117,14 @@ class DownloadPage extends React.Component{
                         <span>{this.state.fileSize}</span>
                     </div>
                 </div>
-                <div onClick={this.downloadClick} className={style.download_button}>
+                <div onClick={this.reCaptcha} className={style.download_button}>
                     <div>
                         <span>DOWNLOAD</span>
                     </div>
                 </div>
+                { this.state.captcha && createPortal(this.recaptchaRender(),document.getElementsByTagName('body')[0])}
             </div>
+            
         );
     }
 
@@ -141,5 +172,7 @@ class DownloadPage extends React.Component{
     }
 
 }
+
+
 
 export default withRouter(DownloadPage);
