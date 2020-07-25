@@ -101,7 +101,6 @@ function requestDL(file,snackBarCB,snackBarPropCB,downloadIdCB){
             snackBarCB(true);
         }
     });
-    snackBarCB(true)
 }
 
 function linkComponent(id){
