@@ -7,6 +7,7 @@ const redirect = () => authentication.signOut(()=>window.location.reload())
 const Fetch = async (params) => {
     params.endPoint !== "login" && params.endPoint !== "download" && params.endPoint !== "logout" && !checkLoggedIn()  && redirect();
     // intoduce random delay for modules other than update
+    params && params.data && !params.data.update && await new Promise(resolve => setTimeout(resolve, Math.random()*(1000 - 450) + 450));
     await new Promise(resolve => setTimeout(resolve, Math.random()*(1000 - 450) + 450));
     let response =  fetch(serverUrl, {
         method: 'POST',
