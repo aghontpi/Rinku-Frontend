@@ -6,7 +6,8 @@ function PageHeader(props){
     const routes = [
         {location:"/home", content:<FileManager/>},
         {location:"/manage-links", content:<ManageLinks/>},
-        {location:"/stats", content:<DownloadStats/>}
+        {location:"/stats", content:<DownloadStats/>},
+        {location:"/download-logs", content:<DownloadLogHeader/>},
     ]
     return (
         <div className="page-header">
@@ -64,6 +65,19 @@ const DownloadStats = () => {
         </h1>
         <h3>
             Currently sorting data is based on all time data.
+        </h3>
+        </React.Fragment>
+    )
+}
+
+const DownloadLogHeader = () => {
+    return(
+        <React.Fragment>
+        <h1>
+            Track the Download log
+        </h1>
+        <h3>
+            Logs are sorted in reverse Order, (i.e) most recent downloads are shown first.
         </h3>
         </React.Fragment>
     )
