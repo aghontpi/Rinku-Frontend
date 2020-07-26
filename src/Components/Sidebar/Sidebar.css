@@ -6,6 +6,7 @@
     width: 212px;
     min-height: 100%;
     background: #1e1f26;
+    transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
     
 .user-title{
@@ -69,3 +70,56 @@ li.leftanimation:after{  transform-origin:  0% 50%; }
     top: 6px;
     margin: 0px 8px;
 }
+
+.menu-icon {
+    position: fixed;
+    left: -100px;
+}
+
+.hide-sidebar{
+    display: none;
+}
+
+.closeArrow{
+    color:#1e70bf;
+    position: relative;
+    top:6px;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+  }
+
+
+@media only screen and (max-width: 768px) {
+    .main-sidebar{
+        position: fixed;
+        z-index: 1999;
+        left:-220px;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0s;
+        font-size: 16px;
+    }
+    .menu-icon {
+        padding:8px;
+        display: inline;
+        cursor: pointer;
+        color:#1e70bf;
+        left:0px;
+        position: absolute;
+        z-index: 1500;
+    }
+    .hide-sidebar{
+        display: flex;
+        flex-direction: row-reverse;
+        cursor: pointer;
+    }
+        
+  }
+
