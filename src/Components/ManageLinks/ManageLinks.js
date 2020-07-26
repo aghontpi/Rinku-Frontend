@@ -54,7 +54,6 @@ function ManageLinks(props){
     },[])
 
     useEffect(()=>{
-        console.log(contents)
         prevcontent && (contents.items !== prevcontent.items) && apiCall();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[contents])
@@ -79,7 +78,6 @@ function list({items, content},setContents,{setSnack,setSnackProp}){
     const modifyItems = (value)=> {
         value && setContents((prevstate)=>{
             const itemsChange = (+prevstate.items) + (+value) 
-            console.log(prevstate,itemsChange);
             return{
                 content:null,
                 items: itemsChange,

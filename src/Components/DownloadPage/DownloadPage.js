@@ -38,7 +38,7 @@ class DownloadPage extends React.Component{
                 }
             )
             
-        }, ()=>console.log(this.state));
+        });
 
         let promise = Download({fileid:fileid});
         promise.then((response) => {

@@ -27,7 +27,6 @@ class FileManager extends React.Component{
                 files:files
             }
         });
-        console.log(this.state);
     }
 
     componentDidMount(){

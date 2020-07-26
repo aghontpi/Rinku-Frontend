@@ -40,7 +40,6 @@ export const DownloadLog = (props) => {
     return (
         <React.Fragment>
               { Loading( props={show:loading}) }
-              {console.log("main",setLogs)}
               {logs.logs && <List {...logs} setLogs={setLogs}></List>}
               {snack && <SnackBar params={
                 {show:true,
