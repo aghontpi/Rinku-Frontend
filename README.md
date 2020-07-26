@@ -20,6 +20,13 @@
 
 ## checkout the [Backend](https://github.com/Gopinath001/Rinku-Backend/) written in php (from scratch) 
 
+## Preview
+
+<p align="center">
+  <img src="demo.gif">
+</p>
+
+
 ## Built with
 
 - React

@@ -10,7 +10,8 @@ import PageHolder from "./../PageHolder/PageHolder";
 import {Stats} from "../Stats"
 import FadeIn from "react-fade-in";
 import Logout from "../Logout/Logout"
-import {Compass, BarChart2, Filter} from "react-feather";
+import {DownloadLog} from "../DownloadLog/DownloadLog";
+import {Compass, BarChart2, Filter, Archive} from "react-feather";
 
 function Sidebar(props){
 
@@ -43,6 +44,13 @@ function Sidebar(props){
             children: () =>  fadeInWrapper(<Stats/>),
             name:"stats", 
             icon:<BarChart2 className="navIcon"/>
+        },
+        {
+            path:"/download-logs",
+            exact:true,
+            children: () =>  fadeInWrapper(<DownloadLog/>),
+            name:"download log", 
+            icon:<Archive className="navIcon"/>
         },
     ];
 

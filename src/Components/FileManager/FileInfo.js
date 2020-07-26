@@ -53,7 +53,9 @@ function FileInfo(props){
             <div className="content center-txt">
                 <span>file : {file}</span>
                 <br></br>
-                    <span>download Id : { downloadId}</span>
+                    <span>download Id : { downloadId === "loading.." ? 
+                            downloadId : linkComponent(downloadId)
+                        }</span>
                 <br></br>
             <span>
                 <div className={" ui approve button " + 
@@ -99,7 +101,6 @@ function requestDL(file,snackBarCB,snackBarPropCB,downloadIdCB){
             snackBarCB(true);
         }
     });
-    snackBarCB(true)
 }
 
 function linkComponent(id){
