@@ -123,11 +123,12 @@ class DownloadPage extends React.Component{
         }).then((json) => {
             this.setLoading(false);
             // reset the captcha after response from the server
-            this.state.captcha && this.recaptchaRef.current.reset();
             if(json.response === "success"){
                 window.location.href = json.content.file.downloadUrl;    
+                this.state.captcha && this.recaptchaRef.current.reset();
             }
             else if(json.response === "error"){
+                this.state.captcha && this.recaptchaRef.current.reset();
                 this.setState((prevState) => {
                     return({
                         ...prevState,
