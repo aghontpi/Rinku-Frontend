@@ -22,7 +22,7 @@
 
 ## Preview
 
-### modile
+### mobile
 
 <p align="center">
   <img src=" demo-mobile.gif" height="400">
