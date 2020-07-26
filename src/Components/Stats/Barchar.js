@@ -1,14 +1,44 @@
-import React from "react"
+import React,{useEffect, useState} from "react"
 import { ResponsiveBar } from '@nivo/bar';
+import {useWindowDimensions} from "./../Utils/"
+
+const axisLeft = {
+    tickSize: 0,
+    tickPadding: 3,
+    tickRotation: -18,
+    legend: '',
+    legendPosition: 'middle',
+    legendOffset: -40
+}
+
+const withMargins = { left:150, right:130}
+const withoutMargins = {left:16, right:16}
 
 const Chart = (props) => {
+    const [margins, setMargins] = useState(withMargins)
+    const [axisleft, setAxisLeft] = useState(axisLeft);
+    const { height, width } = useWindowDimensions();
     //const demoData = [{"fname":"index.php","downloads":'200'},{"fname":"indesx.php","downloads":'100'}]
+    useEffect(() => {
+//        window.location.reload();
+        if(width <= 768){
+            setMargins(withoutMargins); 
+            setAxisLeft(false);
+        } else {
+            setMargins(withMargins);
+            setAxisLeft(axisLeft)
+        }
+            
+    }, [width])
+  
+    
+
     return(
-        props.stats && <ResponsiveBar
+        props.stats && <ResponsiveBar key="1"
             data={props.stats}
             keys={['downloads']}
             indexBy="fname"
-            margin={{ top: 10, right: 130, bottom: 50, left: 150 }}
+            margin={{ top: 10, right: margins.right, bottom: 50, left: margins.left }}
             padding={0.5}
             layout="horizontal"
             colors={{ scheme: 'nivo' }}
@@ -25,14 +55,7 @@ const Chart = (props) => {
                 legendPosition: 'middle',
                 legendOffset: 32
             }}
-            axisLeft={{
-                tickSize: 0,
-                tickPadding: 3,
-                tickRotation: -18,
-                legend: '',
-                legendPosition: 'middle',
-                legendOffset: -40
-            }}
+            axisLeft={ axisleft }
             enableLabel={true}
             labelSkipWidth={5}
             labelSkipHeight={5}

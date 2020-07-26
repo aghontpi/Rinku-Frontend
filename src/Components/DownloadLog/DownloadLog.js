@@ -55,7 +55,7 @@ export const DownloadLog = (props) => {
 const List = ({limit, logs, setLogs}) => {
     return (
         <FadeIn>
-            <table className="ui stripped table">
+            <table className="ui striped table">
                 <TableHeader/>
                 <TableBody logs = {logs}/>
                 <TableFooter limit={limit} logs={logs} setLogs={setLogs}/>
