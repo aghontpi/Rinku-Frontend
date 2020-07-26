@@ -72,7 +72,7 @@ const TableHeader = (props) => {
                 <th>download id/path</th>
                 <th>user agent</th>
                 <th>ip</th>
-                <th>user</th>
+                <th>user (nick)</th>
                 <th>download time</th>
             </tr>
         </thead>
