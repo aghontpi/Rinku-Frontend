@@ -22,17 +22,36 @@
 
 ## Preview
 
+### modile
+
+<p align="center">
+  <img src=" demo-mobile.gif" height="400">
+</p>
+
+
+### pc
+
 <p align="center">
   <img src="demo.gif">
 </p>
 
+## userStories
+
+- only allowed users(login) can use all features except download
+- create download link for any files in the server
+- manage all download links
+- get analytics of the downloaded files(chart)
+- has google Re-captcha support to prevent bots,
+  - Re-captcha is configurable, can be turned off/on
+- get logs of download files(user agent, ip, download time,...etc)
+- have a totally separate download page that has no authentication(but has recaptcha)
 
 ## Built with
 
 - React
 - React router
-- semnatic ui
-- nivo
+- semnatic ui (just for the login & modal)
+- nivo (just for chart)
 
 ## Start Developing
 
