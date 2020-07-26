@@ -146,13 +146,13 @@ function tableHeader(){
     );
 }
 
-function tableFooter({items,count},{prev,next}){
+export function tableFooter({items,count},{prev,next},colCount=4){
     const prevBtnCls = "ui small button " + (items === 10 ? " disabled " : "");
     const nextBtncls = "ui small right floated button" + (count < 10 ? " disabled " : "");
     return(
         <tfoot className="full-width">
             <tr>
-                <th colSpan="4">
+                <th colSpan={colCount}>
                     <div className={ prevBtnCls} onClick={prev} >
                         prev
                     </div>
@@ -165,13 +165,13 @@ function tableFooter({items,count},{prev,next}){
     )
 }
 
-function link(id){
+export function link(id, name=null){
     return (
-        <FadeIn><a target="blank" href={"../download/"+id}> {id}</a></FadeIn> 
+        <FadeIn><a target="blank" href={"../download/"+id}> {name ? name: id}</a></FadeIn> 
     );
 }
 
-function itemSpan(content){
+export function itemSpan(content){
     return(
         <FadeIn><span>{content}</span></FadeIn>
     );

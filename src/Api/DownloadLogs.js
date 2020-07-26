@@ -2,7 +2,7 @@ import { Fetch as FetchApi} from "./Fetch";
 
 const DownloadLogs = (params) => {
     const req = {
-        endPoint:"DownloadLogs",
+        endPoint:"downloadLogs",
         data:params
     }
 
