@@ -4,10 +4,10 @@
 
 [![release][badge]][release link] [![license][license-badge]][license file]
 
-[license-badge]: https://img.shields.io/github/license/Gopinath001/Rinku-Frontend?style=flat-square
-[license file]: https://github.com/Gopinath001/Rinku-Frontend/blob/master/LICENSE
-[badge]: https://img.shields.io/github/v/release/Gopinath001/Rinku-Frontend?include_prereleases&style=flat-square
-[release link]: https://github.com/Gopinath001/Rinku-Frontend/releases
+[license-badge]: https://img.shields.io/github/license/aghontpi/Rinku-Frontend?style=flat-square
+[license file]: https://github.com/aghontpi/Rinku-Frontend/blob/master/LICENSE
+[badge]: https://img.shields.io/github/v/release/aghontpi/Rinku-Frontend?include_prereleases&style=flat-square
+[release link]: https://github.com/aghontpi/Rinku-Frontend/releases
 
 ## Features
 
@@ -18,7 +18,7 @@
 - Includes google Recaptcha (configurable, can be turned off/on)
 - Get log of download files
 
-## checkout the [Backend](https://github.com/Gopinath001/Rinku-Backend/) written in php (from scratch) 
+## checkout the [Backend](https://github.com/aghontpi/Rinku-Backend/) written in php (from scratch) 
 
 ## Preview
 
