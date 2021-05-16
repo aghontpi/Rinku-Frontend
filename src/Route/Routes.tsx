@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { BrowserRouter as Router, Redirect, Route as RRoute, Switch } from 'react-router-dom';
 import Home from '../Components/Home/Home';
-import Login from '../Components/Login/Login';
-import { Download } from '../Containers/Download';
+import { Download } from '../Containers/';
+import { Login } from '../Containers/Login';
 import { useAuth } from '../Hooks/authentication';
 
 interface RouteConfig {
