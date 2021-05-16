@@ -1,9 +1,15 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
-import MyApp from "./Components/MyApp/MyApp";
+import { Route } from './Route';
+import { store } from './Store/';
 function App() {
   return (
-      <MyApp />
+    <>
+      <Provider store={store}>
+        <Route />
+      </Provider>
+    </>
   );
 }
 
