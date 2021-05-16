@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -15,6 +16,7 @@
     "react-feather": "^2.0.8",
     "react-google-recaptcha": "^2.1.0",
     "react-keyed-file-browser": "^1.8.0",
+    "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
     "react-switch": "^5.0.1",
     "react-transition-group": "^4.4.1",
@@ -43,6 +45,7 @@
   },
   "devDependencies": {
     "@nivo/bar": "^0.62.0",
+    "@types/react-router-dom": "^5.1.7",
     "react-fade-in": "^1.1.0",
     "react-loading": "^2.0.3",
     "react-lottie": "^1.2.3",
