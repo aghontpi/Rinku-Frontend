@@ -1,13 +1,8 @@
-import { useHistory } from 'react-router';
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { loginAction, receiveUserAction } from '../Store/user.store';
 import { history, hydrateSession } from '../Utils';
 import { loginRequest } from './network';
-
-interface ErrorResponse {
-  response: 'error';
-  errors: { errMsg: string };
-}
+import { ErrorResponse } from './root.saga';
 
 interface Content {
   user: string;

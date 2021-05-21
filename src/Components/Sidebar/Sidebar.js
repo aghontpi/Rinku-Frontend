@@ -4,8 +4,8 @@ import {
     NavLink
 } from "react-router-dom";
 import "./Sidebar.css";
-import FileManager from "./../FileManager/FileManager";
 import ManageLinks from "./../ManageLinks/ManageLinks";
+import { FileManager } from "./../../Containers/FileManager"
 import PageHolder from "./../PageHolder/PageHolder";
 import { Stats } from "../Stats"
 import FadeIn from "react-fade-in";
