@@ -1,19 +1,22 @@
 import { Container, Grid, Form, Button, Segment } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useAppDispatch } from '../../Hooks/app.hook';
+import { loginAction } from '../../Store/user.store';
 
 const Login = () => {
+  const dispatch = useAppDispatch();
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } = useFormik({
     initialValues: {
       user: '',
       password: '',
       captcha: '',
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: ({ user, password }) => {
+      dispatch(loginAction({ username: user, password }));
     },
     validationSchema: yup.object({
-      user: yup.string().email('enter valid email').required('required'),
+      user: yup.string().required('required'),
       password: yup.string().required('required'),
     }),
   });
@@ -49,7 +52,7 @@ const Login = () => {
                 />
 
                 <Grid.Row textAlign="center" style={{ textAlign: 'center' }}>
-                  <Button content="Login" primary onClick={() => handleSubmit()} />
+                  <Button type="button" content="Login" primary onClick={() => handleSubmit()} />
                 </Grid.Row>
               </Form>
             </Segment>
