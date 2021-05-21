@@ -187,7 +187,7 @@ function ErrorMessage(props) {
 const checkLoggedIn = () => {
     let state = true;
     ['nick', 'user', 'loginTime'].forEach((item) => {
-        sessionStorage.getItem(item) == null && (state = false)
+        localStorage.getItem(item) == null && (state = false)
     });
     return state;
 }

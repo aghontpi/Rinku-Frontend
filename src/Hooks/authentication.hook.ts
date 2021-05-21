@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAppSelector } from './app';
+import { useAppSelector } from './app.hook';
 
 export const useAuth = () => {
   const state = useAppSelector((state) => state.user);
