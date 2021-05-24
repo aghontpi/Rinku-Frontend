@@ -1,4 +1,5 @@
 import { createDownloadLinkAction, getCommandAction, queryFileStatusAction } from '../Store/filemanager.store';
+import { enableDisableLinkAction, manageListQueryListAction } from '../Store/managelinks.store';
 import { loginAction } from '../Store/user.store';
 
 const { protocol, hostname } = window.location;
@@ -42,4 +43,21 @@ const createDownloadLinkRequest = (payload: ReturnType<typeof createDownloadLink
   return post({ payload: { endPoint: 'createDL', data } });
 };
 
-export { loginRequest, executeCommandRequest, queryDownloadStatusRequest, createDownloadLinkRequest };
+const manageLinksQueryRequest = (payload: ReturnType<typeof manageListQueryListAction>['payload']) => {
+  const data = { limit: payload.items };
+  return post({ payload: { endPoint: 'managelinks', data } });
+};
+
+const updateQueryRequest = (payload: ReturnType<typeof enableDisableLinkAction>['payload']) => {
+  const data = { update: payload.action, id: payload.id };
+  return post({ payload: { endPoint: 'managelinks', data } });
+};
+
+export {
+  loginRequest,
+  executeCommandRequest,
+  queryDownloadStatusRequest,
+  createDownloadLinkRequest,
+  manageLinksQueryRequest,
+  updateQueryRequest,
+};

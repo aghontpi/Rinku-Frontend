@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from '../Saga';
 import { fileManagerReducer } from './filemanager.store';
 import { ModalReducer } from './modal.store';
+import { manageLinksReducer } from './managelinks.store';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,6 +13,7 @@ const store = configureStore({
     user: userReducer,
     filemanager: fileManagerReducer,
     modal: ModalReducer,
+    managelinks: manageLinksReducer,
   },
   middleware: [...getDefaultMiddleware(), sagaMiddleware],
 });
