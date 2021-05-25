@@ -7,6 +7,7 @@ import {
   manageListQueryListAction,
 } from '../../Store/managelinks.store';
 import Switch from 'react-switch';
+import { TableFooter } from '../../Component';
 
 const ManageLinks = () => {
   const { items, content, limit } = useAppSelector((state) => state.managelinks);
@@ -25,16 +26,18 @@ const ManageLinks = () => {
     <Table celled padded>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell style={{ textAlign: 'center' }}>Download-Id</Table.HeaderCell>
-          <Table.HeaderCell style={{ textAlign: 'center' }}>path</Table.HeaderCell>
-          <Table.HeaderCell style={{ textAlign: 'center' }}>status</Table.HeaderCell>
+          {['Download-Id', 'path', 'status'].map((value, key) => (
+            <Table.HeaderCell key={key} style={{ textAlign: 'center' }}>
+              {value}
+            </Table.HeaderCell>
+          ))}
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {content.length > 0
           ? content.map(({ download_name, path_of_file, status, id }, index) => {
               return (
-                <Table.Row>
+                <Table.Row id={index + path_of_file + id}>
                   <Table.Cell style={{ textAlign: 'center' }}>
                     <a href={`../download/${download_name}`} target="blank">
                       {download_name}
@@ -46,7 +49,6 @@ const ManageLinks = () => {
                     onClick={() => dispatch(enableDisableLinkAction({ action: status === 'Y' ? 'N' : 'Y', id }))}
                   >
                     <Switch
-                      id={index + path_of_file}
                       onChange={() => {}}
                       checked={status === 'Y'}
                       checkedIcon={false}
@@ -59,20 +61,12 @@ const ManageLinks = () => {
             })
           : 'no items'}
       </Table.Body>
-      <Table.Footer fullWidth>
-        <Table.Row>
-          <Table.HeaderCell colSpan="3">
-            <Menu floated="right" pagination>
-              <Menu.Item as="a" icon onClick={() => changePage('prev')} disabled={items <= 10}>
-                <Icon name="chevron left"></Icon>
-              </Menu.Item>
-              <Menu.Item as="a" icon onClick={() => changePage('next')} disabled={items >= limit}>
-                <Icon name="chevron right"></Icon>
-              </Menu.Item>
-            </Menu>
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Footer>
+      <TableFooter
+        prevDisabled={items <= 10}
+        nextDisabled={items >= limit}
+        prev={() => changePage('prev')}
+        next={() => changePage('next')}
+      />
     </Table>
   );
 };
