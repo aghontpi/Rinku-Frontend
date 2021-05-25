@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { BrowserRouter as Router, Redirect, Route as RRoute, Switch } from 'react-router-dom';
 import { DownloadLog } from '../Components/DownloadLog/DownloadLog';
 import Home from '../Components/Home/Home';
@@ -6,7 +6,9 @@ import ManageLinks from '../Components/ManageLinks/ManageLinks';
 import { Stats } from '../Components/Stats';
 import { Download } from '../Containers/';
 import { Login } from '../Containers/Login';
+import { useAppDispatch } from '../Hooks/app.hook';
 import { useAuth } from '../Hooks/authentication.hook';
+import { hideLoaderAction } from '../Store/loader.store';
 
 interface RouteConfig {
   path: string;
@@ -25,6 +27,11 @@ const ROUTE_PATHS: RouteConfig[] = [
 
 export const Route = () => {
   const auth = useAuth();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(hideLoaderAction());
+  }, []);
 
   // if auth is null, it is in loading state
   if (auth === null) {
