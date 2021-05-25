@@ -10,10 +10,11 @@ import PageHolder from "./../PageHolder/PageHolder";
 import { Stats } from "../Stats"
 import FadeIn from "react-fade-in";
 import Logout from "../Logout/Logout"
-import { DownloadLog } from "../DownloadLog/DownloadLog";
+// import { DownloadLog } from "../DownloadLog/DownloadLog";
 import { Compass, BarChart2, Filter, Archive, ArrowRight, ArrowLeft } from "react-feather";
 import { useWindowDimensions } from "./../Utils/"
 import { ManageLinks } from "../../Containers/ManageLinks";
+import { DownloadLog } from "../../Containers/DownloadLog";
 
 
 function Sidebar(props) {

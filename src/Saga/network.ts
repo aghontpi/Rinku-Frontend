@@ -1,3 +1,4 @@
+import { downloadLogQueryListAction } from '../Containers/DownloadLog/downloadlog.store';
 import { createDownloadLinkAction, getCommandAction, queryFileStatusAction } from '../Store/filemanager.store';
 import { enableDisableLinkAction, manageListQueryListAction } from '../Store/managelinks.store';
 import { loginAction } from '../Store/user.store';
@@ -53,6 +54,11 @@ const updateQueryRequest = (payload: ReturnType<typeof enableDisableLinkAction>[
   return post({ payload: { endPoint: 'managelinks', data } });
 };
 
+const queryDownloadLogRequest = ({ limit }: ReturnType<typeof downloadLogQueryListAction>['payload']) => {
+  const data = { limit };
+  return post({ payload: { endPoint: 'downloadLogs', data } });
+};
+
 export {
   loginRequest,
   executeCommandRequest,
@@ -60,4 +66,5 @@ export {
   createDownloadLinkRequest,
   manageLinksQueryRequest,
   updateQueryRequest,
+  queryDownloadLogRequest,
 };
