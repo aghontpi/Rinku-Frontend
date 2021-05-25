@@ -50,8 +50,10 @@
   },
   "devDependencies": {
     "@nivo/bar": "^0.62.0",
+    "@types/react-fade-in": "^2.0.2",
+    "@types/react-lottie": "^1.2.5",
     "@types/react-router-dom": "^5.1.7",
-    "react-fade-in": "^1.1.0",
+    "react-fade-in": "^2.0.1",
     "react-loading": "^2.0.3",
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.1.2"

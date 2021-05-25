@@ -1,5 +1,6 @@
 import { all, put, takeLatest } from '@redux-saga/core/effects';
 import { call } from 'redux-saga/effects';
+import { hideLoaderAction, showLoaderAction } from '../Store/loader.store';
 import {
   enableDisableLinkAction,
   manageListQueryListAction,
@@ -18,6 +19,7 @@ interface SuccessResponse {
 }
 
 function* queryList({ payload }: ReturnType<typeof manageListQueryListAction>) {
+  yield put(showLoaderAction());
   const response: NetworkResponse = yield call(manageLinksQueryRequest, payload);
   if (response.response === 'success') {
     const content = response.content as unknown as { list: string; limit: string };
@@ -26,9 +28,11 @@ function* queryList({ payload }: ReturnType<typeof manageListQueryListAction>) {
   } else {
     console.error('error', response);
   }
+  yield put(hideLoaderAction());
 }
 
 function* updateQuery({ payload }: ReturnType<typeof enableDisableLinkAction>) {
+  yield put(showLoaderAction());
   const response: NetworkResponse = yield call(updateQueryRequest, payload);
   if (response.response === 'success') {
     const content = response.content as unknown as { status: 'item updated' | string };
@@ -40,6 +44,7 @@ function* updateQuery({ payload }: ReturnType<typeof enableDisableLinkAction>) {
   } else {
     console.error('error', response);
   }
+  yield put(hideLoaderAction());
 }
 
 function* manageLinksSaga() {
