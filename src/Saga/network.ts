@@ -59,6 +59,11 @@ const queryDownloadLogRequest = ({ limit }: ReturnType<typeof downloadLogQueryLi
   return post({ payload: { endPoint: 'downloadLogs', data } });
 };
 
+const queryStatsRequest = () => {
+  const data = { date: 'dummy' };
+  return post({ payload: { endPoint: 'stats', data } });
+};
+
 export {
   loginRequest,
   executeCommandRequest,
@@ -67,4 +72,5 @@ export {
   manageLinksQueryRequest,
   updateQueryRequest,
   queryDownloadLogRequest,
+  queryStatsRequest,
 };

@@ -7,6 +7,7 @@ import { ModalReducer } from './modal.store';
 import { manageLinksReducer } from './managelinks.store';
 import { downloadLogReducer } from '../Containers/DownloadLog/downloadlog.store';
 import { loaderReducer } from './loader.store';
+import { statsReducer } from './stats.store';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +19,7 @@ const store = configureStore({
     managelinks: manageLinksReducer,
     downloadlogs: downloadLogReducer,
     loader: loaderReducer,
+    stats: statsReducer,
   },
   middleware: [...getDefaultMiddleware(), sagaMiddleware],
 });

@@ -14,7 +14,7 @@ const modal = createSlice({
   initialState,
   reducers: {
     open(state) {
-      state.open = true;
+      state.open = false;
       state.size = 'small';
     },
     close(state) {

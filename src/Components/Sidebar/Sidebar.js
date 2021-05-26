@@ -7,7 +7,7 @@ import "./Sidebar.css";
 // import ManageLinks from "./../ManageLinks/ManageLinks";
 import { FileManager } from "./../../Containers/FileManager"
 import PageHolder from "./../PageHolder/PageHolder";
-import { Stats } from "../Stats"
+// import { Stats } from "../Stats"
 import FadeIn from "react-fade-in";
 import Logout from "../Logout/Logout"
 // import { DownloadLog } from "../DownloadLog/DownloadLog";
@@ -15,6 +15,7 @@ import { Compass, BarChart2, Filter, Archive, ArrowRight, ArrowLeft } from "reac
 import { useWindowDimensions } from "./../Utils/"
 import { ManageLinks } from "../../Containers/ManageLinks";
 import { DownloadLog } from "../../Containers/DownloadLog";
+import { Stats } from "../../Containers/Stats";
 
 
 function Sidebar(props) {
