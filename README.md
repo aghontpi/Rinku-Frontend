@@ -18,16 +18,15 @@
 - Includes google Recaptcha (configurable, can be turned off/on)
 - Get log of download files
 
-## checkout the [Backend](https://github.com/aghontpi/Rinku-Backend/) written in php (from scratch) 
+## [Backend](https://github.com/aghontpi/Rinku-Backend/) PHP, (Written from Scratch)
 
 ## Preview
 
 ### mobile
 
 <p align="center">
-  <img src=" demo-mobile.gif" height="400">
+  <img src="demo-mobile.gif" height="400">
 </p>
-
 
 ### pc
 
@@ -46,26 +45,53 @@
 - get logs of download files(user agent, ip, download time,...etc)
 - have a totally separate download page that has no authentication(but has recaptcha)
 
+## Folder Structure
+
+| Name                    | Description                                                                                |
+| ----------------------- | ------------------------------------------------------------------------------------------ |
+| **src**                 | Source files for server                                                                    |
+| **src/public**          | Static files to be used on client side                                                     |
+| **src/Saga/**           | Redux-Saga files                                                                           |
+| **src/Saga/network.ts** | Server Communication logic                                                                 |
+| **src/Store/**          | Redux/Redux-toolkit files                                                                  |
+| **src/Hooks/**          | Custom hooks                                                                               |
+| **src/Containers/**     | Every page for the app                                                                     |
+| **src/Components/**     | Common components for the whole app                                                        |
+| **src/Route/**          | All Route config                                                                           |
+| **src/Utils/**          | Common logic throught the whole app                                                        |
+| **src/Style/**          | Style and assests, since create-react-app does not allow files outside src/ to be imported |
+
+## File-naming
+
+- store files are named \*.store.ts
+- saga files are named \*.saga.ts
+- hook files are named \*.hook.ts
+
 ## Built with
 
 - React
 - React router
-- semnatic ui (just for the login & modal)
-- nivo (just for chart)
+- Typescript
+- Redux
+- Redux-toolkit
+- Redux-Saga
+- semnatic ui
+- nivo
 
 ## Start Developing
 
 ```bash
 
-npm start
+yarn
+
+yarn start
 
 ```
 
 ## Start build
 
-
 ```bash
 
-npm run build
+yarn run build
 
 ```
