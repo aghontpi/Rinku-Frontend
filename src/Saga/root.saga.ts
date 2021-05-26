@@ -3,9 +3,16 @@ import { downloadLogSaga } from '../Containers/DownloadLog/downloadlog.saga';
 import { authenticationSaga } from './authentication.saga';
 import { filemanagerSaga } from './filemanager.saga';
 import { manageLinksSaga } from './managelinks.saga';
+import { statsSaga } from './stats.saga';
 
 function* root() {
-  yield all([fork(authenticationSaga), fork(filemanagerSaga), fork(manageLinksSaga), fork(downloadLogSaga)]);
+  yield all([
+    fork(authenticationSaga),
+    fork(filemanagerSaga),
+    fork(manageLinksSaga),
+    fork(downloadLogSaga),
+    fork(statsSaga),
+  ]);
 }
 
 export default root;
