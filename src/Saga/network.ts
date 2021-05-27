@@ -3,8 +3,11 @@ import { createDownloadLinkAction, getCommandAction, queryFileStatusAction } fro
 import { enableDisableLinkAction, manageListQueryListAction } from '../Store/managelinks.store';
 import { loginAction } from '../Store/user.store';
 
-const { protocol, hostname } = window.location;
-const URL = `${protocol}//${hostname}/index.php`;
+const URL = process.env.REACT_APP_BACKEND_URL;
+
+if (!URL) {
+  throw new Error('Please define variables in .env');
+}
 
 interface Post {
   payload: {
