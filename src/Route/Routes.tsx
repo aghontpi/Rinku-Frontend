@@ -6,7 +6,7 @@ import { Download } from '../Containers/';
 import { Login } from '../Containers/Login';
 import { useAppDispatch } from '../Hooks/app.hook';
 import { useAuth } from '../Hooks/authentication.hook';
-import { hideLoaderAction } from '../Store/loader.store';
+import { hideLoaderAction, showLoaderAction } from '../Store/loader.store';
 
 export const Route = () => {
   const auth = useAuth();
@@ -16,9 +16,10 @@ export const Route = () => {
     dispatch(hideLoaderAction());
   }, []);
 
-  // if auth is null, it is in loading state
+  // if auth is null, loading state
   if (auth === null) {
-    return <span>loading...</span>;
+    dispatch(showLoaderAction());
+    return <></>;
   }
 
   return <>{auth ? <PostAuth /> : <PreAuth />}</>;

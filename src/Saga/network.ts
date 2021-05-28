@@ -14,16 +14,25 @@ interface Post {
     endPoint: string;
     data: Object;
   };
+  raw?: boolean;
 }
 
-const post = ({ payload }: Post) => {
+const post = ({ payload, raw }: Post) => {
   const body = JSON.stringify(payload);
   return fetch(URL, {
     method: 'POST',
     body,
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
-  }).then((_) => _.json());
+  })
+    .then((_) => {
+      // check if raw response is specified
+      return raw ? _ : _.json();
+    })
+    .catch((error) => {
+      //todo: custom error class
+      throw new Error(error);
+    });
 };
 
 const loginRequest = (payload: ReturnType<typeof loginAction>['payload']) => {
@@ -67,6 +76,8 @@ const queryStatsRequest = () => {
   return post({ payload: { endPoint: 'stats', data } });
 };
 
+const testAuthentication = () => post({ payload: { endPoint: 'stats', data: { date: 'dummy' } }, raw: true });
+
 export {
   loginRequest,
   executeCommandRequest,
@@ -76,4 +87,5 @@ export {
   updateQueryRequest,
   queryDownloadLogRequest,
   queryStatsRequest,
+  testAuthentication,
 };
