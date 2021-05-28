@@ -7,10 +7,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.6.1",
-    "@types/react": "^17.0.7",
-    "@types/react-dom": "^17.0.5",
     "formik": "^2.2.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -25,7 +21,11 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "typescript": "^4.2.4",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "react-fade-in": "^2.0.1",
+    "react-loading": "^2.0.3",
+    "react-lottie": "^1.2.3",
+    "react-router-dom": "^5.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,9 +53,9 @@
     "@types/react-fade-in": "^2.0.2",
     "@types/react-lottie": "^1.2.5",
     "@types/react-router-dom": "^5.1.7",
-    "react-fade-in": "^2.0.1",
-    "react-loading": "^2.0.3",
-    "react-lottie": "^1.2.3",
-    "react-router-dom": "^5.1.2"
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "@types/react": "^17.0.7",
+    "@types/react-dom": "^17.0.5"
   }
 }
