@@ -22,6 +22,7 @@ const store = configureStore({
     stats: statsReducer,
   },
   middleware: [...getDefaultMiddleware(), sagaMiddleware],
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 sagaMiddleware.run(rootSaga);
