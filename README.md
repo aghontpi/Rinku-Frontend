@@ -60,6 +60,8 @@
 | **src/Route/**          | All Route config                                                                           |
 | **src/Utils/**          | Common logic throught the whole app                                                        |
 | **src/Style/**          | Style and assests, since create-react-app does not allow files outside src/ to be imported |
+| **.env.development**    | Development variables, configuring backend, etc.                                           |
+| **.env.production**     | Development variables but for production                                                   |
 
 ## File-naming
 
