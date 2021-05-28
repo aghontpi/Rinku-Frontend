@@ -1,0 +1,73 @@
+.main-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 212px !important;
+  min-height: 100%;
+  background: #1e1f26 !important;
+  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.user-title {
+  font-weight: 400;
+  width: inherit;
+  position: absolute;
+  top: 10%;
+  text-align: center;
+  color: white;
+}
+
+.user-content {
+  font-weight: 400;
+  width: inherit;
+  position: absolute;
+  top: 25%;
+}
+
+.user-content div {
+  background-color: unset !important;
+}
+
+.user-content svg {
+  margin-left: 24px;
+}
+
+.user-content label {
+  margin-left: 8px;
+}
+
+.navIcon {
+  margin: 0px 8px;
+}
+
+.menu-item {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 8px;
+}
+
+.menu-item:hover {
+  background-color: #000 !important;
+}
+
+.active {
+  color: rgba(227, 227, 120) !important;
+}
+
+.page-holder {
+  padding-left: 213px;
+  width: 100%;
+  height: 100%;
+  transition: padding 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.actual-page {
+  margin-top: 8px;
+}
+
+.page-render-area {
+  position: relative;
+  left: 0;
+  right: 0;
+  padding: 0px 32px;
+}
