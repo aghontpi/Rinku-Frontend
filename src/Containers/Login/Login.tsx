@@ -3,9 +3,16 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAppDispatch } from '../../Hooks/app.hook';
 import { loginAction } from '../../Store/user.store';
+import { useEffect } from 'react';
+import { hideLoaderAction } from '../../Store/loader.store';
 
 const Login = () => {
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(hideLoaderAction());
+  }, []);
+
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } = useFormik({
     initialValues: {
       user: '',

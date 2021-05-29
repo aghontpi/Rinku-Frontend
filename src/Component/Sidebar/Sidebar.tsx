@@ -1,12 +1,13 @@
 import React, { ReactNode, useState } from 'react';
 import FadeIn from 'react-fade-in';
-import { Filter, Compass, BarChart2, Archive } from 'react-feather';
+import { Filter, Compass, BarChart2, Archive, LogOut } from 'react-feather';
 import { FileManager, ManageLinks, Stats, DownloadLog } from '../../Containers/';
-import { useAppSelector } from '../../Hooks/app.hook';
-import { Menu, MenuItem, Sidebar as SemanticSidebar } from 'semantic-ui-react';
+import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
+import { Menu, MenuItem, Popup, Sidebar as SemanticSidebar } from 'semantic-ui-react';
 import style from './sidebar.module.css';
 import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 import { PageHeader } from '../PageHeader';
+import { logoutAction } from '../../Store/user.store';
 
 const SIDE_BAR = [
   {
@@ -43,6 +44,7 @@ const Sidebar = () => {
   const { nick } = useAppSelector((state) => state.user);
   // react router dom navLink was not working, workaround
   const [activeMenu, setActiveMenu] = useState<number>(0);
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -59,8 +61,20 @@ const Sidebar = () => {
         >
           <div className={style['user-title']}>
             <FadeIn>
-              <h4>Hi {nick}!</h4>
-              {/* <Logout /> */}
+              <Popup
+                content="logout your session"
+                mouseEnterDelay={400}
+                on="hover"
+                position="bottom center"
+                trigger={
+                  <div onClick={() => dispatch(logoutAction())}>
+                    <h4>Hi {nick}!</h4>
+                    <div className={style['logout']}>
+                      logout <LogOut size="16" className={style['mr-1']} />
+                    </div>
+                  </div>
+                }
+              />
             </FadeIn>
           </div>
           <div className={style['user-content']}>

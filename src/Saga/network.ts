@@ -76,6 +76,8 @@ const queryStatsRequest = () => {
   return post({ payload: { endPoint: 'stats', data } });
 };
 
+const logoutRequest = () => post({ payload: { endPoint: 'logout', data: {} } });
+
 const testAuthentication = () => post({ payload: { endPoint: 'stats', data: { date: 'dummy' } }, raw: true });
 
 export {
@@ -88,4 +90,5 @@ export {
   queryDownloadLogRequest,
   queryStatsRequest,
   testAuthentication,
+  logoutRequest,
 };
