@@ -3,6 +3,7 @@ import { Button, Placeholder } from 'semantic-ui-react';
 import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
 import { queryFileStatusAction, receiveFileStatusAction } from '../../Store/filemanager.store';
 import { RootState } from '../../Store/store';
+import { byteToReadable } from '../../Utils';
 
 interface ModalContentProps {
   fileInfo: RootState['filemanager']['files'][0] | null;
@@ -36,7 +37,7 @@ const ModalContent = ({ fileInfo, buttonClick }: ModalContentProps) => {
       ) : (
         <>
           <Template left="File" right={fileInfo?.key || ''} />
-          <Template left="Size" right={fileInfo?.size.toString() || ''} style={{ marginBottom: '16px' }} />
+          <Template left="Size" right={byteToReadable(fileInfo?.size || '0')} style={{ marginBottom: '16px' }} />
           {file ? (
             <Button onClick={buttonClick}>Generate ID</Button>
           ) : (

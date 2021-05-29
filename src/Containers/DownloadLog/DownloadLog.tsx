@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
-import { TableFooter } from '../../Component';
+import { TableFooter } from '../../Components';
 import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
 import {
   downloadLogChangePageAction,

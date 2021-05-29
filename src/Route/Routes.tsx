@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Redirect, Route as RRoute, Switch } from 'react-router-dom';
-import Sidebar from '../Component/Sidebar/Sidebar';
+import Sidebar from '../Components/Sidebar/Sidebar';
 
 import { Download } from '../Containers/';
 import { Login } from '../Containers/Login';

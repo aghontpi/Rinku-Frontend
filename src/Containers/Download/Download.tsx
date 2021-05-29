@@ -9,6 +9,7 @@ import {
 } from '../../Store/download.store';
 import folder from './folder.webp';
 import style from './download.module.css';
+import { byteToReadable } from '../../Utils';
 
 interface DownloadPageProps extends RouteComponentProps<{ fileid: string }> {}
 
@@ -45,7 +46,7 @@ const DownloadPage = ({ match }: DownloadPageProps) => {
         ) : (
           <div>
             <span>{filename}</span>
-            <span>{filesize}</span>
+            <span>{byteToReadable(filesize)}</span>
           </div>
         )}
       </div>
