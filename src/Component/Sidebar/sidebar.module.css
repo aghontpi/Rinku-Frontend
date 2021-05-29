@@ -71,3 +71,14 @@
   right: 0;
   padding: 0px 32px;
 }
+
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.mr-1 {
+  margin-left: 0.5rem;
+}

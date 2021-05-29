@@ -51,6 +51,10 @@ export const useAuth = () => {
       setTimeout(() => {
         setAuth(true);
       }, 1000);
+    } else if (!state.user && !state.nick && !state.loginTime) {
+      setTimeout(() => {
+        setAuth(false);
+      }, 500);
     }
   }, [state]);
 

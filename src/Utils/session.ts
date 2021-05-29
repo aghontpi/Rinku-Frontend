@@ -8,4 +8,10 @@ const hydrateSession = ({ loginTime, nick, user }: HydrateSession) => {
   localStorage.setItem('loginTime', loginTime);
 };
 
-export { hydrateSession };
+const dehydrateSession = () => {
+  localStorage.removeItem('nick');
+  localStorage.removeItem('user');
+  localStorage.removeItem('loginTime');
+};
+
+export { hydrateSession, dehydrateSession };
