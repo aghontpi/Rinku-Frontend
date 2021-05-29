@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from '@redux-saga/core/effects';
-import { queryDownloadLogRequest } from '../../Saga/network';
-import { ErrorResponse } from '../../Saga/root.saga';
-import { downloadLogQueryListAction, receiveDownloadLogAction } from './downloadlog.store';
+import { queryDownloadLogRequest } from './network';
+import { ErrorResponse } from './root.saga';
+import { downloadLogQueryListAction, receiveDownloadLogAction } from '../Store/downloadlog.store';
 
 type NetworkResponse = ErrorResponse | SuccessResponse;
 
