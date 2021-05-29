@@ -1,4 +1,4 @@
-import { downloadLogQueryListAction } from '../Containers/DownloadLog/downloadlog.store';
+import { downloadLogQueryListAction } from '../Store/downloadlog.store';
 import { createDownloadLinkAction, getCommandAction, queryFileStatusAction } from '../Store/filemanager.store';
 import { enableDisableLinkAction, manageListQueryListAction } from '../Store/managelinks.store';
 import { loginAction } from '../Store/user.store';

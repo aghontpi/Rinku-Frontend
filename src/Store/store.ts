@@ -5,7 +5,7 @@ import { rootSaga } from '../Saga';
 import { fileManagerReducer } from './filemanager.store';
 import { ModalReducer } from './modal.store';
 import { manageLinksReducer } from './managelinks.store';
-import { downloadLogReducer } from '../Containers/DownloadLog/downloadlog.store';
+import { downloadLogReducer } from './downloadlog.store';
 import { loaderReducer } from './loader.store';
 import { statsReducer } from './stats.store';
 import { downloadReducer } from './download.store';

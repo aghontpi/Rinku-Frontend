@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects';
-import { downloadLogSaga } from '../Containers/DownloadLog/downloadlog.saga';
+import { downloadLogSaga } from './downloadlog.saga';
 import { authenticationSaga } from './authentication.saga';
 import { filemanagerSaga } from './filemanager.saga';
 import { manageLinksSaga } from './managelinks.saga';

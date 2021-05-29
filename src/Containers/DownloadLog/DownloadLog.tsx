@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import { TableFooter } from '../../Component';
 import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
-import { downloadLogChangePageAction, downloadLogQueryListAction, receiveDownloadLogAction } from './downloadlog.store';
+import {
+  downloadLogChangePageAction,
+  downloadLogQueryListAction,
+  receiveDownloadLogAction,
+} from '../../Store/downloadlog.store';
 
 const DownloadLog = () => {
   const { limit, total, logs } = useAppSelector((state) => state.downloadlogs);
