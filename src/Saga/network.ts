@@ -80,6 +80,16 @@ const logoutRequest = () => post({ payload: { endPoint: 'logout', data: {} } });
 
 const testAuthentication = () => post({ payload: { endPoint: 'stats', data: { date: 'dummy' } }, raw: true });
 
+const queryFileInfoRequest = ({ fileid }: { fileid: string }) => {
+  const data = { fileid };
+  return post({ payload: { endPoint: 'download', data } });
+};
+
+const queryDownloadRequest = ({ fileid }: { fileid: string }) => {
+  const data = { fileid, action: 'download' };
+  return post({ payload: { endPoint: 'download', data } });
+};
+
 export {
   loginRequest,
   executeCommandRequest,
@@ -91,4 +101,6 @@ export {
   queryStatsRequest,
   testAuthentication,
   logoutRequest,
+  queryFileInfoRequest,
+  queryDownloadRequest,
 };

@@ -8,6 +8,7 @@ import { manageLinksReducer } from './managelinks.store';
 import { downloadLogReducer } from '../Containers/DownloadLog/downloadlog.store';
 import { loaderReducer } from './loader.store';
 import { statsReducer } from './stats.store';
+import { downloadReducer } from './download.store';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +21,7 @@ const store = configureStore({
     downloadlogs: downloadLogReducer,
     loader: loaderReducer,
     stats: statsReducer,
+    download: downloadReducer,
   },
   middleware: [...getDefaultMiddleware(), sagaMiddleware],
   devTools: process.env.NODE_ENV === 'development',
