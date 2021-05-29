@@ -4,6 +4,7 @@ const initialState: {
   user: string;
   nick: string;
   loginTime: string;
+  form?: { error: { user: string; password: string } };
 } = { loginTime: '', nick: '', user: '' };
 
 type UserDetails = typeof initialState;
@@ -19,12 +20,15 @@ const userSlice = createSlice({
       state.nick = payload.nick;
       state.user = payload.user;
     },
+    receiveFormErrorAction(state, { payload }: PayloadAction<UserDetails['form']>) {
+      state.form = payload;
+    },
   },
 });
 
 export const {
   reducer: userReducer,
-  actions: { loginAction, logoutAction, receiveUserAction },
+  actions: { loginAction, logoutAction, receiveUserAction, receiveFormErrorAction },
 } = userSlice;
 
 export type { UserDetails };

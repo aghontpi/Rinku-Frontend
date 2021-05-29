@@ -1,19 +1,27 @@
 import { Container, Grid, Form, Button, Segment } from 'semantic-ui-react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useAppDispatch } from '../../Hooks/app.hook';
+import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
 import { loginAction } from '../../Store/user.store';
 import { useEffect } from 'react';
 import { hideLoaderAction } from '../../Store/loader.store';
 
 const Login = () => {
   const dispatch = useAppDispatch();
+  const { form } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(hideLoaderAction());
   }, []);
 
-  const { values, errors, handleBlur, handleChange, handleSubmit, touched } = useFormik({
+  useEffect(() => {
+    if (form && form.error.user && form.error.password) {
+      setFieldError('user', form.error.user);
+      setFieldError('password', form.error.password);
+    }
+  }, [form]);
+
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched, setFieldError } = useFormik({
     initialValues: {
       user: '',
       password: '',
