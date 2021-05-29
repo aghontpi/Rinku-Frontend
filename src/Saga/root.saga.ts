@@ -4,6 +4,7 @@ import { authenticationSaga } from './authentication.saga';
 import { filemanagerSaga } from './filemanager.saga';
 import { manageLinksSaga } from './managelinks.saga';
 import { statsSaga } from './stats.saga';
+import { DownloadSaga } from './download.saga';
 
 function* root() {
   yield all([
@@ -12,6 +13,7 @@ function* root() {
     fork(manageLinksSaga),
     fork(downloadLogSaga),
     fork(statsSaga),
+    fork(DownloadSaga),
   ]);
 }
 
