@@ -1,8 +1,7 @@
 import { all, call, put, takeEvery, takeLeading } from 'redux-saga/effects';
 import { hideLoaderAction, showLoaderAction } from '../Store/loader.store';
 import { loginAction, logoutAction, receiveFormErrorAction, receiveUserAction } from '../Store/user.store';
-import { history, hydrateSession } from '../Utils';
-import { dehydrateSession } from '../Utils/session';
+import { history, hydrateSession, dehydrateSession } from '../Utils';
 import { loginRequest, logoutRequest } from './network';
 import { ErrorResponse } from './root.saga';
 

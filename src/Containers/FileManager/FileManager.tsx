@@ -3,7 +3,7 @@ import FileBrowser from 'react-keyed-file-browser';
 import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
 import { createDownloadLinkAction, getCommandAction } from '../../Store/filemanager.store';
 import 'react-keyed-file-browser/dist/react-keyed-file-browser.css';
-import { Modal } from '../../Component';
+import { Modal } from '../../Components';
 import { ModalOpen } from '../../Store/modal.store';
 import { ModalContent } from './modalContent';
 

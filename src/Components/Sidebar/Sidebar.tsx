@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { Filter, Compass, BarChart2, Archive, LogOut } from 'react-feather';
-import { FileManager, ManageLinks, Stats, DownloadLog } from '../../Containers/';
+import { FileManager, ManageLinks, Stats, DownloadLog } from '../../Containers';
 import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
 import { Menu, MenuItem, Popup, Sidebar as SemanticSidebar } from 'semantic-ui-react';
 import style from './sidebar.module.css';

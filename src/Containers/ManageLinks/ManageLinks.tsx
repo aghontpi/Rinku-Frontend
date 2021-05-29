@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Menu, Table, Icon } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { useAppDispatch, useAppSelector } from '../../Hooks/app.hook';
 import {
   enableDisableLinkAction,
@@ -7,7 +7,7 @@ import {
   manageListQueryListAction,
 } from '../../Store/managelinks.store';
 import Switch from 'react-switch';
-import { TableFooter } from '../../Component';
+import { TableFooter } from '../../Components';
 
 const ManageLinks = () => {
   const { items, content, limit } = useAppSelector((state) => state.managelinks);
