@@ -16,6 +16,7 @@
 - Download page for files is seperate
 - Get analytics of the download statistics
 - Includes google Recaptcha (configurable, can be turned off/on)
+  - Removed (google recaptcha from frontend implemnentation after v2.x)
 - Get log of download files
 
 ## [Backend](https://github.com/aghontpi/Rinku-Backend/) PHP, (Written from Scratch)
@@ -79,6 +80,10 @@
 - Redux-Saga
 - semnatic ui
 - nivo
+
+## Development Status
+
+[Scrum](https://trello.com/b/6ntSZ7Yw/rinku)
 
 ## Start Developing
 
