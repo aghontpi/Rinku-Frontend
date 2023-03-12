@@ -26,7 +26,7 @@
 ### mobile
 
 <p align="center">
-  <img src="demo-mobile.gif" height="400">
+  <img src="demo-mobile.gif" width="320">
 </p>
 
 ### pc
